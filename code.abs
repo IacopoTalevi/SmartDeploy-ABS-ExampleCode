@@ -1,0 +1,2572 @@
+module IacopoTest;
+
+export *;
+import * from ABS.DC;
+import * from ABS.SmartDeploy;
+
+import * from MainSmartDeployer;
+import * from Scale1;
+import * from Scale2;
+import * from Scale3;
+
+/////////////////////////////////////
+// SmartDeployCloudProvider ANNOTATION FOR SMART DEPLOYER
+/////////////////////////////////////
+
+/*
+	{
+		"c4_large" : { "cost" : 119, "payment_interval" : 1, "resources" : { "Cores" : 2, "Memory" : 375, "Bandwidth" : 500 }} ,
+		"c4_xlarge" : { "cost" : 237, "payment_interval" : 1, "resources" : { "Cores" : 4, "Memory" : 750, "Bandwidth" : 750 }} ,
+		"c4_2xlarge" : { "cost" : 476, "payment_interval" : 1, "resources" : { "Cores" : 8, "Memory" : 1500, "Bandwidth" : 1000 }}
+	}
+*/
+
+[SmartDeployCloudProvider: "{ \"c4_large\" : { \"cost\" : 119, \"payment_interval\" : 1, \"resources\" : { \"Cores\" : 2, \"Memory\" : 375, \"Bandwidth\" : 500 }} , \"c4_xlarge\" : { \"cost\" : 237, \"payment_interval\" : 1, \"resources\" : { \"Cores\" : 4, \"Memory\" : 750, \"Bandwidth\" : 750 }} , \"c4_2xlarge\" : { \"cost\" : 476, \"payment_interval\" : 1, \"resources\" : { \"Cores\" : 8, \"Memory\" : 1500, \"Bandwidth\" : 1000 }}}"]
+
+
+
+
+/////////////////////////////////////
+// SmartDeploy ANNOTATION FOR SMART DEPLOYER: Main block
+/////////////////////////////////////
+
+/*
+	{
+	  "id":"MainSmartDeployer",
+	  "specification":"
+	  					DB = 1 and
+						MessageReceiver = 1 and
+						MessageParser = 1 and
+						HeaderAnalyser = 1 and
+						LinkAnalyser = 1 and
+						TextAnalyser = 1 and
+						SentimentAnalyser = 1 and
+						AttachmentsManager = 1 and
+						VirusScanner = 1 and
+						ImageAnalyser = 1 and
+						NSFWDetector = 1 and
+						ImageRecognizer = 1 and
+						MessageAnalyser =1 and
+
+						forall ?x in DC: (
+							?x.MessageParser_LoadBalancer +
+							?x.HeaderAnalyser_LoadBalancer +
+							?x.LinkAnalyser_LoadBalancer +
+							?x.TextAnalyser_LoadBalancer +
+							?x.SentimentAnalyser_LoadBalancer +
+							?x.AttachmentsManager_LoadBalancer +
+							?x.VirusScanner_LoadBalancer +
+							?x.ImageAnalyser_LoadBalancer +
+							?x.NSFWDetector_LoadBalancer +
+							?x.ImageRecognizer_LoadBalancer +
+							?x.MessageAnalyser_LoadBalancer +
+
+							?x.MessageReceiver +
+							?x.DB
+
+							 > 0 impl (sum ?y in obj: ?x.?y) = 1)",
+
+	  "DC":[
+
+	  ],
+	  "obj":[
+
+	  ],
+	  "cloud_provider_DC_availability":{
+	  	"c4_large":10,
+		"c4_xlarge":10,
+	    "c4_2xlarge":10
+	  },
+	  "bind preferences":[
+	    "local",
+		"sum ?x of type MessageParser in '.*' :  forall ?y of type MessageParser_LoadBalancer in '.*' : ?x used by ?y",
+		"sum ?x of type HeaderAnalyser in '.*' :  forall ?y of type HeaderAnalyser_LoadBalancer in '.*' : ?x used by ?y",
+		"sum ?x of type LinkAnalyser in '.*' :  forall ?y of type LinkAnalyser_LoadBalancer in '.*' : ?x used by ?y",
+		"sum ?x of type TextAnalyser in '.*' :  forall ?y of type TextAnalyser_LoadBalancer in '.*' : ?x used by ?y",
+		"sum ?x of type SentimentAnalyser in '.*' :  forall ?y of type SentimentAnalyser_LoadBalancer in '.*' : ?x used by ?y",
+		"sum ?x of type AttachmentsManager in '.*' :  forall ?y of type AttachmentsManager_LoadBalancer in '.*' : ?x used by ?y",
+		"sum ?x of type VirusScanner in '.*' :  forall ?y of type VirusScanner_LoadBalancer in '.*' : ?x used by ?y",
+		"sum ?x of type ImageAnalyser in '.*' :  forall ?y of type ImageAnalyser_LoadBalancer in '.*' : ?x used by ?y",
+		"sum ?x of type NSFWDetector in '.*' :  forall ?y of type NSFWDetector_LoadBalancer in '.*' : ?x used by ?y",
+		"sum ?x of type ImageRecognizer in '.*' :  forall ?y of type ImageRecognizer_LoadBalancer in '.*' : ?x used by ?y",
+		"sum ?x of type MessageAnalyser in '.*' :  forall ?y of type MessageAnalyser_LoadBalancer in '.*' : ?x used by ?y"
+	  ],
+	  "add_method_priorities":[],
+	  "remove_method_priorities":[]
+	}
+*/
+
+/*
+[ SmartDeploy : "{ \"id\":\"MainSmartDeployer\", \"specification\":\" DB=1 and MessageReceiver = 1 and MessageParser = 1 and HeaderAnalyser = 1 and LinkAnalyser = 1 and TextAnalyser = 1 and SentimentAnalyser = 1 and AttachmentsManager = 1 and VirusScanner = 1 and ImageAnalyser = 1 and NSFWDetector = 1 and ImageRecognizer = 1 and MessageAnalyser = 1 and forall ?x in DC: ( ?x.MessageParser_LoadBalancer + ?x.HeaderAnalyser_LoadBalancer + ?x.LinkAnalyser_LoadBalancer + ?x.TextAnalyser_LoadBalancer + ?x.SentimentAnalyser_LoadBalancer + ?x.AttachmentsManager_LoadBalancer + ?x.VirusScanner_LoadBalancer + ?x.ImageAnalyser_LoadBalancer + ?x.NSFWDetector_LoadBalancer + ?x.ImageRecognizer_LoadBalancer + ?x.MessageAnalyser_LoadBalancer + ?x.MessageReceiver + ?x.DB > 0 impl (sum ?y in obj: ?x.?y) = 1)\", \"DC\":[ ], \"obj\":[ ], \"cloud_provider_DC_availability\":{ \"c4_large\":10, \"c4_xlarge\":10, \"c4_2xlarge\":10 }, \"bind preferences\":[ \"local\", \"sum ?x of type MessageParser in '.*' : forall ?y of type MessageParser_LoadBalancer in '.*' : ?x used by ?y\", \"sum ?x of type HeaderAnalyser in '.*' : forall ?y of type HeaderAnalyser_LoadBalancer in '.*' : ?x used by ?y\", \"sum ?x of type LinkAnalyser in '.*' : forall ?y of type LinkAnalyser_LoadBalancer in '.*' : ?x used by ?y\", \"sum ?x of type TextAnalyser in '.*' : forall ?y of type TextAnalyser_LoadBalancer in '.*' : ?x used by ?y\", \"sum ?x of type SentimentAnalyser in '.*' : forall ?y of type SentimentAnalyser_LoadBalancer in '.*' : ?x used by ?y\", \"sum ?x of type AttachmentsManager in '.*' : forall ?y of type AttachmentsManager_LoadBalancer in '.*' : ?x used by ?y\", \"sum ?x of type VirusScanner in '.*' : forall ?y of type VirusScanner_LoadBalancer in '.*' : ?x used by ?y\", \"sum ?x of type ImageAnalyser in '.*' :  forall ?y of type ImageAnalyser_LoadBalancer in '.*' : ?x used by ?y\", \"sum ?x of type NSFWDetector in '.*' :  forall ?y of type NSFWDetector_LoadBalancer in '.*' : ?x used by ?y\", \"sum ?x of type ImageRecognizer in '.*' :  forall ?y of type ImageRecognizer_LoadBalancer in '.*' : ?x used by ?y\", \"sum ?x of type MessageAnalyser in '.*' :  forall ?y of type MessageAnalyser_LoadBalancer in '.*' : ?x used by ?y\" ], \"add_method_priorities\":[], \"remove_method_priorities\":[] }" ]
+*/
+
+
+/////////////////////////////////////
+// SmartDeploy ANNOTATION FOR SMART DEPLOYER: Scale1 block
+/////////////////////////////////////
+
+/*
+	{
+		"id":"Scale1",
+		"specification":"DB=0 and MessageReceiver = 0 and MessageParser = 0 and HeaderAnalyser = 0 and LinkAnalyser = 0 and TextAnalyser = 1 and SentimentAnalyser = 3 and AttachmentsManager = 1 and VirusScanner = 3 and ImageAnalyser = 1 and NSFWDetector = 3 and ImageRecognizer = 3 and MessageAnalyser = 1 and
+						MessageParser_LoadBalancer = 0 and HeaderAnalyser_LoadBalancer = 0 and LinkAnalyser_LoadBalancer = 0 and TextAnalyser_LoadBalancer = 0 and SentimentAnalyser_LoadBalancer = 0 and AttachmentsManager_LoadBalancer = 0 and VirusScanner_LoadBalancer = 0 and ImageAnalyser_LoadBalancer = 0 and NSFWDetector_LoadBalancer = 0 and ImageRecognizer_LoadBalancer = 0 and MessageAnalyser_LoadBalancer = 0",
+		"DC":[],
+		"obj":[
+			{
+				"name":"messageParser_LoadBalancerObj",
+				"interface":"MessageParser_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"MessageParser_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "MessageParserInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "MessageParserInterface"}
+					}
+				]
+			},
+			{
+				"name":"headerAnalyser_LoadBalancerObj",
+				"interface":"HeaderAnalyser_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"HeaderAnalyser_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "HeaderAnalyserInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "HeaderAnalyserInterface"}
+					}
+				]
+			},
+			{
+				"name":"linkAnalyser_LoadBalancerObj",
+				"interface":"LinkAnalyser_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"LinkAnalyser_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "LinkAnalyserInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "LinkAnalyserInterface"}
+					}
+				]
+			},
+			{
+				"name":"textAnalyser_LoadBalancerObj",
+				"interface":"TextAnalyser_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"TextAnalyser_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "TextAnalyserInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "TextAnalyserInterface"}
+					}
+				]
+			},
+			{
+				"name":"sentimentAnalyser_LoadBalancerObj",
+				"interface":"SentimentAnalyser_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"SentimentAnalyser_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "SentimentAnalyserInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "SentimentAnalyserInterface"}
+					}
+				]
+			},
+			{
+				"name":"attachmentsManager_LoadBalancerObj",
+				"interface":"AttachmentsManager_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"AttachmentsManager_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "AttachmentsManagerInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "AttachmentsManagerInterface"}
+					}
+				]
+			},
+			{
+				"name":"virusScanner_LoadBalancerObj",
+				"interface":"VirusScanner_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"VirusScanner_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "VirusScannerInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "VirusScannerInterface"}
+					}
+				]
+			},
+			{
+				"name":"imageAnalyser_LoadBalancerObj",
+				"interface":"ImageAnalyser_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"ImageAnalyser_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "ImageAnalyserInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "ImageAnalyserInterface"}
+					}
+				]
+			},
+			{
+				"name":"nsfwDetector_LoadBalancerObj",
+				"interface":"NSFWDetector_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"NSFWDetector_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "NSFWDetectorInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "NSFWDetectorInterface"}
+					}
+				]
+			},
+			{
+				"name":"imageRecognizer_LoadBalancerObj",
+				"interface":"ImageRecognizer_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"ImageRecognizer_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "ImageRecognizerInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "ImageRecognizerInterface"}
+					}
+				]
+			},
+			{
+				"name":"messageAnalyser_LoadBalancerObj",
+				"interface":"MessageAnalyser_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"MessageAnalyser_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "MessageAnalyserInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "MessageAnalyserInterface"}
+					}
+				]
+			},
+			{
+				"name":"dbObj",
+				"interface":"DBInterface",
+				"provides":[
+					{
+						"ports":[
+							"DBInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+				]
+			}
+		],
+		"cloud_provider_DC_availability":{
+	  	  	"c4_large":20,
+	  		"c4_xlarge":20,
+	  	    "c4_2xlarge":20
+	  	},
+		"bind preferences":[
+			"(
+				(forall ?x of type MessageParser in '.*' :  forall ?y of type messageParser_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type HeaderAnalyser in '.*' :  forall ?y of type headerAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type LinkAnalyser in '.*' :  forall ?y of type linkAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type TextAnalyser in '.*' :  forall ?y of type textAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type SentimentAnalyser in '.*' :  forall ?y of type sentimentAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type AttachmentsManager in '.*' :  forall ?y of type attachmentsManager_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type VirusScanner in '.*' :  forall ?y of type virusScanner_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type ImageAnalyser in '.*' :  forall ?y of type imageAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type NSFWDetector in '.*' :  forall ?y of type nsfwDetector_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type ImageRecognizer in '.*' :  forall ?y of type imageRecognizer_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type MessageAnalyser in '.*' :  forall ?y of type messageAnalyser_LoadBalancerObj in '.*' : ?x used by ?y)
+			)"
+		]
+	}
+*/
+
+/*
+[ SmartDeploy : "{\"id\":\"Scale1\",\"specification\":\"DB=0 and MessageReceiver = 0 and MessageParser = 0 and HeaderAnalyser = 0 and LinkAnalyser = 0 and TextAnalyser = 1 and SentimentAnalyser = 3 and AttachmentsManager = 1 and VirusScanner = 3 and ImageAnalyser = 1 and NSFWDetector = 3 and ImageRecognizer = 3 and MessageAnalyser = 1 and MessageParser_LoadBalancer = 0 and HeaderAnalyser_LoadBalancer = 0 and LinkAnalyser_LoadBalancer = 0 and TextAnalyser_LoadBalancer = 0 and SentimentAnalyser_LoadBalancer = 0 and AttachmentsManager_LoadBalancer = 0 and VirusScanner_LoadBalancer = 0 and ImageAnalyser_LoadBalancer = 0 and NSFWDetector_LoadBalancer = 0 and ImageRecognizer_LoadBalancer = 0 and MessageAnalyser_LoadBalancer = 0\",\"DC\":[], \"obj\":[ {\"name\":\"messageParser_LoadBalancerObj\",\"interface\":\"MessageParser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"MessageParser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"MessageParserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"MessageParserInterface\"}}]}, {\"name\":\"headerAnalyser_LoadBalancerObj\",\"interface\":\"HeaderAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"HeaderAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"HeaderAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"HeaderAnalyserInterface\"}}]}, {\"name\":\"linkAnalyser_LoadBalancerObj\",\"interface\":\"LinkAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"LinkAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"LinkAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"LinkAnalyserInterface\"}}]}, {\"name\":\"textAnalyser_LoadBalancerObj\",\"interface\":\"TextAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"TextAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"TextAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"TextAnalyserInterface\"}}]}, {\"name\":\"sentimentAnalyser_LoadBalancerObj\",\"interface\":\"SentimentAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"SentimentAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"SentimentAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"SentimentAnalyserInterface\"}}]}, {\"name\":\"attachmentsManager_LoadBalancerObj\",\"interface\":\"AttachmentsManager_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"AttachmentsManager_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"AttachmentsManagerInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"AttachmentsManagerInterface\"}}]}, {\"name\":\"virusScanner_LoadBalancerObj\",\"interface\":\"VirusScanner_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"VirusScanner_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"VirusScannerInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"VirusScannerInterface\"}}]}, {\"name\":\"imageAnalyser_LoadBalancerObj\",\"interface\":\"ImageAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"ImageAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"ImageAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"ImageAnalyserInterface\"}}]}, {\"name\":\"nsfwDetector_LoadBalancerObj\",\"interface\":\"NSFWDetector_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"NSFWDetector_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"NSFWDetectorInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"NSFWDetectorInterface\"}}]}, {\"name\":\"imageRecognizer_LoadBalancerObj\",\"interface\":\"ImageRecognizer_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"ImageRecognizer_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"ImageRecognizerInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"ImageRecognizerInterface\"}}]}, {\"name\":\"messageAnalyser_LoadBalancerObj\",\"interface\":\"MessageAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"MessageAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"MessageAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"MessageAnalyserInterface\"}}]}, {\"name\":\"dbObj\",\"interface\":\"DBInterface\",\"provides\":[{\"ports\":[\"DBInterface\"],\"num\":-1}],\"methods\" : []}], \"cloud_provider_DC_availability\":{ \"c4_large\":20, \"c4_xlarge\":20, \"c4_2xlarge\":20 }, \"bind preferences\":[\"((forall ?x of type MessageParser in '.*' :  forall ?y of type messageParser_LoadBalancerObj in '.*' : ?x used by ?y) and (forall ?x of type HeaderAnalyser in '.*' :  forall ?y of type headerAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and (forall ?x of type LinkAnalyser in '.*' :  forall ?y of type linkAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and (forall ?x of type TextAnalyser in '.*' :  forall ?y of type textAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type SentimentAnalyser in '.*' :  forall ?y of type sentimentAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type AttachmentsManager in '.*' :  forall ?y of type attachmentsManager_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type VirusScanner in '.*' :  forall ?y of type virusScanner_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type ImageAnalyser in '.*' :  forall ?y of type imageAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type NSFWDetector in '.*' :  forall ?y of type nsfwDetector_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type ImageRecognizer in '.*' :  forall ?y of type imageRecognizer_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type MessageAnalyser in '.*' :  forall ?y of type messageAnalyser_LoadBalancerObj in '.*' : ?x used by ?y))\"]}"]
+*/
+
+
+/////////////////////////////////////
+// SmartDeploy ANNOTATION FOR SMART DEPLOYER: Scale2 block
+/////////////////////////////////////
+
+/*
+	{
+		"id":"Scale2",
+		"specification":"DB=0 and MessageReceiver = 0 and MessageParser = 1 and HeaderAnalyser = 1 and LinkAnalyser = 1 and TextAnalyser = 2 and SentimentAnalyser = 4 and AttachmentsManager = 2 and VirusScanner = 4 and ImageAnalyser = 2 and NSFWDetector = 4 and ImageRecognizer = 4 and MessageAnalyser = 2 and
+						MessageParser_LoadBalancer = 0 and HeaderAnalyser_LoadBalancer = 0 and LinkAnalyser_LoadBalancer = 0 and TextAnalyser_LoadBalancer = 0 and SentimentAnalyser_LoadBalancer = 0 and AttachmentsManager_LoadBalancer = 0 and VirusScanner_LoadBalancer = 0 and ImageAnalyser_LoadBalancer = 0 and NSFWDetector_LoadBalancer = 0 and ImageRecognizer_LoadBalancer = 0 and MessageAnalyser_LoadBalancer = 0",
+		"DC":[],
+		"obj":[
+			{
+				"name":"messageParser_LoadBalancerObj",
+				"interface":"MessageParser_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"MessageParser_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "MessageParserInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "MessageParserInterface"}
+					}
+				]
+			},
+			{
+				"name":"headerAnalyser_LoadBalancerObj",
+				"interface":"HeaderAnalyser_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"HeaderAnalyser_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "HeaderAnalyserInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "HeaderAnalyserInterface"}
+					}
+				]
+			},
+			{
+				"name":"linkAnalyser_LoadBalancerObj",
+				"interface":"LinkAnalyser_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"LinkAnalyser_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "LinkAnalyserInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "LinkAnalyserInterface"}
+					}
+				]
+			},
+			{
+				"name":"textAnalyser_LoadBalancerObj",
+				"interface":"TextAnalyser_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"TextAnalyser_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "TextAnalyserInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "TextAnalyserInterface"}
+					}
+				]
+			},
+			{
+				"name":"sentimentAnalyser_LoadBalancerObj",
+				"interface":"SentimentAnalyser_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"SentimentAnalyser_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "SentimentAnalyserInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "SentimentAnalyserInterface"}
+					}
+				]
+			},
+			{
+				"name":"attachmentsManager_LoadBalancerObj",
+				"interface":"AttachmentsManager_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"AttachmentsManager_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "AttachmentsManagerInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "AttachmentsManagerInterface"}
+					}
+				]
+			},
+			{
+				"name":"virusScanner_LoadBalancerObj",
+				"interface":"VirusScanner_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"VirusScanner_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "VirusScannerInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "VirusScannerInterface"}
+					}
+				]
+			},
+			{
+				"name":"imageAnalyser_LoadBalancerObj",
+				"interface":"ImageAnalyser_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"ImageAnalyser_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "ImageAnalyserInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "ImageAnalyserInterface"}
+					}
+				]
+			},
+			{
+				"name":"nsfwDetector_LoadBalancerObj",
+				"interface":"NSFWDetector_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"NSFWDetector_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "NSFWDetectorInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "NSFWDetectorInterface"}
+					}
+				]
+			},
+			{
+				"name":"imageRecognizer_LoadBalancerObj",
+				"interface":"ImageRecognizer_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"ImageRecognizer_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "ImageRecognizerInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "ImageRecognizerInterface"}
+					}
+				]
+			},
+			{
+				"name":"messageAnalyser_LoadBalancerObj",
+				"interface":"MessageAnalyser_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"MessageAnalyser_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "MessageAnalyserInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "MessageAnalyserInterface"}
+					}
+				]
+			},
+			{
+				"name":"dbObj",
+				"interface":"DBInterface",
+				"provides":[
+					{
+						"ports":[
+							"DBInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+				]
+			}
+		],
+		"cloud_provider_DC_availability":{
+	  	  	"c4_large":30,
+	  		"c4_xlarge":30,
+	  	    "c4_2xlarge":30
+	  	},
+		"bind preferences":[
+			"(
+				(forall ?x of type MessageParser in '.*' :  forall ?y of type messageParser_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type HeaderAnalyser in '.*' :  forall ?y of type headerAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type LinkAnalyser in '.*' :  forall ?y of type linkAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type TextAnalyser in '.*' :  forall ?y of type textAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type SentimentAnalyser in '.*' :  forall ?y of type sentimentAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type AttachmentsManager in '.*' :  forall ?y of type attachmentsManager_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type VirusScanner in '.*' :  forall ?y of type virusScanner_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type ImageAnalyser in '.*' :  forall ?y of type imageAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type NSFWDetector in '.*' :  forall ?y of type nsfwDetector_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type ImageRecognizer in '.*' :  forall ?y of type imageRecognizer_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type MessageAnalyser in '.*' :  forall ?y of type messageAnalyser_LoadBalancerObj in '.*' : ?x used by ?y)
+			)"
+		]
+	}
+*/
+
+/*
+[ SmartDeploy : "{\"id\":\"Scale2\",\"specification\":\"DB=0 and MessageReceiver = 0 and MessageParser = 1 and HeaderAnalyser = 1 and LinkAnalyser = 1 and TextAnalyser = 2 and SentimentAnalyser = 4 and AttachmentsManager = 2 and VirusScanner = 4 and ImageAnalyser = 2 and NSFWDetector = 4 and ImageRecognizer = 4 and MessageAnalyser = 2 and MessageParser_LoadBalancer = 0 and HeaderAnalyser_LoadBalancer = 0 and LinkAnalyser_LoadBalancer = 0 and TextAnalyser_LoadBalancer = 0 and SentimentAnalyser_LoadBalancer = 0 and AttachmentsManager_LoadBalancer = 0 and VirusScanner_LoadBalancer = 0 and ImageAnalyser_LoadBalancer = 0 and NSFWDetector_LoadBalancer = 0 and ImageRecognizer_LoadBalancer = 0 and MessageAnalyser_LoadBalancer = 0\",\"DC\":[], \"obj\":[ {\"name\":\"messageParser_LoadBalancerObj\",\"interface\":\"MessageParser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"MessageParser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"MessageParserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"MessageParserInterface\"}}]}, {\"name\":\"headerAnalyser_LoadBalancerObj\",\"interface\":\"HeaderAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"HeaderAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"HeaderAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"HeaderAnalyserInterface\"}}]}, {\"name\":\"linkAnalyser_LoadBalancerObj\",\"interface\":\"LinkAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"LinkAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"LinkAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"LinkAnalyserInterface\"}}]}, {\"name\":\"textAnalyser_LoadBalancerObj\",\"interface\":\"TextAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"TextAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"TextAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"TextAnalyserInterface\"}}]}, {\"name\":\"sentimentAnalyser_LoadBalancerObj\",\"interface\":\"SentimentAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"SentimentAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"SentimentAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"SentimentAnalyserInterface\"}}]}, {\"name\":\"attachmentsManager_LoadBalancerObj\",\"interface\":\"AttachmentsManager_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"AttachmentsManager_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"AttachmentsManagerInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"AttachmentsManagerInterface\"}}]}, {\"name\":\"virusScanner_LoadBalancerObj\",\"interface\":\"VirusScanner_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"VirusScanner_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"VirusScannerInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"VirusScannerInterface\"}}]}, {\"name\":\"imageAnalyser_LoadBalancerObj\",\"interface\":\"ImageAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"ImageAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"ImageAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"ImageAnalyserInterface\"}}]}, {\"name\":\"nsfwDetector_LoadBalancerObj\",\"interface\":\"NSFWDetector_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"NSFWDetector_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"NSFWDetectorInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"NSFWDetectorInterface\"}}]}, {\"name\":\"imageRecognizer_LoadBalancerObj\",\"interface\":\"ImageRecognizer_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"ImageRecognizer_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"ImageRecognizerInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"ImageRecognizerInterface\"}}]}, {\"name\":\"messageAnalyser_LoadBalancerObj\",\"interface\":\"MessageAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"MessageAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"MessageAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"MessageAnalyserInterface\"}}]}, {\"name\":\"dbObj\",\"interface\":\"DBInterface\",\"provides\":[{\"ports\":[\"DBInterface\"],\"num\":-1}],\"methods\" : []}], \"cloud_provider_DC_availability\":{ \"c4_large\":30, \"c4_xlarge\":30, \"c4_2xlarge\":30 }, \"bind preferences\":[\"((forall ?x of type MessageParser in '.*' :  forall ?y of type messageParser_LoadBalancerObj in '.*' : ?x used by ?y) and (forall ?x of type HeaderAnalyser in '.*' :  forall ?y of type headerAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and (forall ?x of type LinkAnalyser in '.*' :  forall ?y of type linkAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and (forall ?x of type TextAnalyser in '.*' :  forall ?y of type textAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type SentimentAnalyser in '.*' :  forall ?y of type sentimentAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type AttachmentsManager in '.*' :  forall ?y of type attachmentsManager_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type VirusScanner in '.*' :  forall ?y of type virusScanner_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type ImageAnalyser in '.*' :  forall ?y of type imageAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type NSFWDetector in '.*' :  forall ?y of type nsfwDetector_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type ImageRecognizer in '.*' :  forall ?y of type imageRecognizer_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type MessageAnalyser in '.*' :  forall ?y of type messageAnalyser_LoadBalancerObj in '.*' : ?x used by ?y))\"]}"]
+*/
+
+
+/////////////////////////////////////
+// SmartDeploy ANNOTATION FOR SMART DEPLOYER: Scale3 block
+/////////////////////////////////////
+
+/*
+	{
+		"id":"Scale3",
+		"specification":"DB=0 and MessageReceiver = 0 and MessageParser = 0 and HeaderAnalyser = 0 and LinkAnalyser = 0 and TextAnalyser = 2 and SentimentAnalyser = 6 and AttachmentsManager = 2 and VirusScanner = 6 and ImageAnalyser = 2 and NSFWDetector = 6 and ImageRecognizer = 6 and MessageAnalyser = 2 and
+						MessageParser_LoadBalancer = 0 and HeaderAnalyser_LoadBalancer = 0 and LinkAnalyser_LoadBalancer = 0 and TextAnalyser_LoadBalancer = 0 and SentimentAnalyser_LoadBalancer = 0 and AttachmentsManager_LoadBalancer = 0 and VirusScanner_LoadBalancer = 0 and ImageAnalyser_LoadBalancer = 0 and NSFWDetector_LoadBalancer = 0 and ImageRecognizer_LoadBalancer = 0 and MessageAnalyser_LoadBalancer = 0",
+		"DC":[],
+		"obj":[
+			{
+				"name":"messageParser_LoadBalancerObj",
+				"interface":"MessageParser_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"MessageParser_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "MessageParserInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "MessageParserInterface"}
+					}
+				]
+			},
+			{
+				"name":"headerAnalyser_LoadBalancerObj",
+				"interface":"HeaderAnalyser_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"HeaderAnalyser_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "HeaderAnalyserInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "HeaderAnalyserInterface"}
+					}
+				]
+			},
+			{
+				"name":"linkAnalyser_LoadBalancerObj",
+				"interface":"LinkAnalyser_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"LinkAnalyser_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "LinkAnalyserInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "LinkAnalyserInterface"}
+					}
+				]
+			},
+			{
+				"name":"textAnalyser_LoadBalancerObj",
+				"interface":"TextAnalyser_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"TextAnalyser_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "TextAnalyserInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "TextAnalyserInterface"}
+					}
+				]
+			},
+			{
+				"name":"sentimentAnalyser_LoadBalancerObj",
+				"interface":"SentimentAnalyser_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"SentimentAnalyser_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "SentimentAnalyserInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "SentimentAnalyserInterface"}
+					}
+				]
+			},
+			{
+				"name":"attachmentsManager_LoadBalancerObj",
+				"interface":"AttachmentsManager_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"AttachmentsManager_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "AttachmentsManagerInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "AttachmentsManagerInterface"}
+					}
+				]
+			},
+			{
+				"name":"virusScanner_LoadBalancerObj",
+				"interface":"VirusScanner_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"VirusScanner_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "VirusScannerInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "VirusScannerInterface"}
+					}
+				]
+			},
+			{
+				"name":"imageAnalyser_LoadBalancerObj",
+				"interface":"ImageAnalyser_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"ImageAnalyser_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "ImageAnalyserInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "ImageAnalyserInterface"}
+					}
+				]
+			},
+			{
+				"name":"nsfwDetector_LoadBalancerObj",
+				"interface":"NSFWDetector_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"NSFWDetector_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "NSFWDetectorInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "NSFWDetectorInterface"}
+					}
+				]
+			},
+			{
+				"name":"imageRecognizer_LoadBalancerObj",
+				"interface":"ImageRecognizer_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"ImageRecognizer_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "ImageRecognizerInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "ImageRecognizerInterface"}
+					}
+				]
+			},
+			{
+				"name":"messageAnalyser_LoadBalancerObj",
+				"interface":"MessageAnalyser_LoadBalancerInterface",
+				"provides":[
+					{
+						"ports":[
+							"MessageAnalyser_LoadBalancerInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+					{
+						"add" : { "name": "connectInstance", "param_type": "MessageAnalyserInterface" },
+						"remove" : { "name": "disconnectInstance", "return_type" : "MessageAnalyserInterface"}
+					}
+				]
+			},
+			{
+				"name":"dbObj",
+				"interface":"DBInterface",
+				"provides":[
+					{
+						"ports":[
+							"DBInterface"
+						],
+						"num":-1
+					}
+				],
+				"methods" : [
+				]
+			}
+		],
+		"cloud_provider_DC_availability":{
+	  	  	"c4_large":40,
+	  		"c4_xlarge":40,
+	  	    "c4_2xlarge":40
+	  	},
+		"bind preferences":[
+			"(
+				(forall ?x of type MessageParser in '.*' :  forall ?y of type messageParser_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type HeaderAnalyser in '.*' :  forall ?y of type headerAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type LinkAnalyser in '.*' :  forall ?y of type linkAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type TextAnalyser in '.*' :  forall ?y of type textAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type SentimentAnalyser in '.*' :  forall ?y of type sentimentAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type AttachmentsManager in '.*' :  forall ?y of type attachmentsManager_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type VirusScanner in '.*' :  forall ?y of type virusScanner_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type ImageAnalyser in '.*' :  forall ?y of type imageAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type NSFWDetector in '.*' :  forall ?y of type nsfwDetector_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type ImageRecognizer in '.*' :  forall ?y of type imageRecognizer_LoadBalancerObj in '.*' : ?x used by ?y) and
+				(forall ?x of type MessageAnalyser in '.*' :  forall ?y of type messageAnalyser_LoadBalancerObj in '.*' : ?x used by ?y)
+			)"
+		]
+	}
+*/
+
+/*
+[ SmartDeploy : "{\"id\":\"Scale3\",\"specification\":\"DB=0 and MessageReceiver = 0 and MessageParser = 0 and HeaderAnalyser = 0 and LinkAnalyser = 0 and TextAnalyser = 2 and SentimentAnalyser = 6 and AttachmentsManager = 2 and VirusScanner = 6 and ImageAnalyser = 2 and NSFWDetector = 6 and ImageRecognizer = 6 and MessageAnalyser = 2 and MessageParser_LoadBalancer = 0 and HeaderAnalyser_LoadBalancer = 0 and LinkAnalyser_LoadBalancer = 0 and TextAnalyser_LoadBalancer = 0 and SentimentAnalyser_LoadBalancer = 0 and AttachmentsManager_LoadBalancer = 0 and VirusScanner_LoadBalancer = 0 and ImageAnalyser_LoadBalancer = 0 and NSFWDetector_LoadBalancer = 0 and ImageRecognizer_LoadBalancer = 0 and MessageAnalyser_LoadBalancer = 0\",\"DC\":[], \"obj\":[ {\"name\":\"messageParser_LoadBalancerObj\",\"interface\":\"MessageParser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"MessageParser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"MessageParserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"MessageParserInterface\"}}]}, {\"name\":\"headerAnalyser_LoadBalancerObj\",\"interface\":\"HeaderAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"HeaderAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"HeaderAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"HeaderAnalyserInterface\"}}]}, {\"name\":\"linkAnalyser_LoadBalancerObj\",\"interface\":\"LinkAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"LinkAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"LinkAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"LinkAnalyserInterface\"}}]}, {\"name\":\"textAnalyser_LoadBalancerObj\",\"interface\":\"TextAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"TextAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"TextAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"TextAnalyserInterface\"}}]}, {\"name\":\"sentimentAnalyser_LoadBalancerObj\",\"interface\":\"SentimentAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"SentimentAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"SentimentAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"SentimentAnalyserInterface\"}}]}, {\"name\":\"attachmentsManager_LoadBalancerObj\",\"interface\":\"AttachmentsManager_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"AttachmentsManager_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"AttachmentsManagerInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"AttachmentsManagerInterface\"}}]}, {\"name\":\"virusScanner_LoadBalancerObj\",\"interface\":\"VirusScanner_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"VirusScanner_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"VirusScannerInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"VirusScannerInterface\"}}]}, {\"name\":\"imageAnalyser_LoadBalancerObj\",\"interface\":\"ImageAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"ImageAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"ImageAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"ImageAnalyserInterface\"}}]}, {\"name\":\"nsfwDetector_LoadBalancerObj\",\"interface\":\"NSFWDetector_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"NSFWDetector_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"NSFWDetectorInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"NSFWDetectorInterface\"}}]}, {\"name\":\"imageRecognizer_LoadBalancerObj\",\"interface\":\"ImageRecognizer_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"ImageRecognizer_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"ImageRecognizerInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"ImageRecognizerInterface\"}}]}, {\"name\":\"messageAnalyser_LoadBalancerObj\",\"interface\":\"MessageAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"MessageAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"MessageAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"MessageAnalyserInterface\"}}]}, {\"name\":\"dbObj\",\"interface\":\"DBInterface\",\"provides\":[{\"ports\":[\"DBInterface\"],\"num\":-1}],\"methods\" : []}], \"cloud_provider_DC_availability\":{ \"c4_large\":40, \"c4_xlarge\":40, \"c4_2xlarge\":40 }, \"bind preferences\":[\"((forall ?x of type MessageParser in '.*' :  forall ?y of type messageParser_LoadBalancerObj in '.*' : ?x used by ?y) and (forall ?x of type HeaderAnalyser in '.*' :  forall ?y of type headerAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and (forall ?x of type LinkAnalyser in '.*' :  forall ?y of type linkAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and (forall ?x of type TextAnalyser in '.*' :  forall ?y of type textAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type SentimentAnalyser in '.*' :  forall ?y of type sentimentAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type AttachmentsManager in '.*' :  forall ?y of type attachmentsManager_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type VirusScanner in '.*' :  forall ?y of type virusScanner_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type ImageAnalyser in '.*' :  forall ?y of type imageAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type NSFWDetector in '.*' :  forall ?y of type nsfwDetector_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type ImageRecognizer in '.*' :  forall ?y of type imageRecognizer_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type MessageAnalyser in '.*' :  forall ?y of type messageAnalyser_LoadBalancerObj in '.*' : ?x used by ?y))\"]}"]
+*/
+
+
+
+
+/////////////////////////////////////
+// PROGRAM
+/////////////////////////////////////
+
+interface MessageReceiverInterface {
+    Unit newMessage (String mailData);
+}
+/*
+	{
+		"class" : "MessageReceiver",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 2,
+					"Memory" : 200
+				},
+				"sig" : [
+					{
+						"kind" : "require",
+						"type" : "MessageParser_LoadBalancerInterface"
+					}
+				],
+				"methods" : []
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"MessageReceiver\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 2,\"Memory\" : 200},\"sig\" : [{\"kind\" : \"require\",\"type\" : \"MessageParser_LoadBalancerInterface\"}],\"methods\" : []}]}"]
+class MessageReceiver(MessageParser_LoadBalancerInterface parserLoadBalancer) implements MessageReceiverInterface {
+
+    Unit newMessage (String mailData){
+
+        //receive a new mail and start the analysis process
+        //call the MessageParsing with the mail information
+        parserLoadBalancer!newRequest(mailData);
+
+    }
+
+}
+
+
+interface MessageParser_LoadBalancerInterface {
+    Unit connectInstance(MessageParserInterface newInstance);
+    MessageParserInterface disconnectInstance();
+    Unit newRequest (String mailData);
+}
+/*
+	{
+		"class" : "MessageParser_LoadBalancer",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 2,
+					"Memory" : 200
+				},
+				"sig" : [],
+                "methods" : [
+					{
+						"add" : {
+							"name" : "connectInstance",
+							"param_type" : "MessageParserInterface"
+						},
+						"remove" : {
+							"name" : "disconnectInstance",
+                            "return_type": "MessageParserInterface"
+						}
+					}
+				]
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"MessageParser_LoadBalancer\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 2,\"Memory\" : 200},\"sig\" : [], \"methods\" : [{\"add\" : {\"name\" : \"connectInstance\",\"param_type\" : \"MessageParserInterface\"},\"remove\" : {\"name\" : \"disconnectInstance\", \"return_type\": \"MessageParserInterface\"}}]}]}"]
+class MessageParser_LoadBalancer() implements MessageParser_LoadBalancerInterface {
+
+    List<MessageParserInterface> instancesConnected = list[];
+    Int nextInstance = 0;
+
+    Unit connectInstance(MessageParserInterface newInstance){
+        instancesConnected = appendright(instancesConnected, newInstance);
+    }
+
+    MessageParserInterface disconnectInstance(){
+        MessageParserInterface removedInstance = nth(instancesConnected, length(instancesConnected)-1);
+        instancesConnected = without(instancesConnected, removedInstance);
+        return removedInstance;
+    }
+
+    Unit newRequest (String mailData){
+        //apply a scheduler policy
+        MessageParserInterface selectedInstance = nth(instancesConnected, nextInstance);
+        nextInstance = (nextInstance + 1) % length(instancesConnected);
+
+        //send the request to the selectedInstance
+        selectedInstance!parseMessage(mailData);
+    }
+
+}
+
+
+data MessageFields = MessageFields(
+                        String headers,
+                        String sender,
+                        Maybe<String> messageHeader,
+                        Maybe<String> messageBody,
+                        Maybe< Set<String> > links,
+                        Maybe< Set<String> > attachments
+                    );
+interface MessageParserInterface {
+    Unit parseMessage (String mailData);
+}
+/*
+	{
+		"class" : "MessageParser",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 4,
+					"Memory" : 400
+				},
+				"sig" : [
+					{
+						"kind" : "require",
+						"type" : "HeaderAnalyser_LoadBalancerInterface"
+					},
+                    {
+						"kind" : "require",
+						"type" : "LinkAnalyser_LoadBalancerInterface"
+					},
+                    {
+						"kind" : "require",
+						"type" : "TextAnalyser_LoadBalancerInterface"
+					},
+                    {
+						"kind" : "require",
+						"type" : "AttachmentsManager_LoadBalancerInterface"
+					},
+					{
+						"kind" : "require",
+						"type" : "MessageAnalyser_LoadBalancerInterface"
+					},
+                    {
+						"kind" : "require",
+						"type" : "DBInterface"
+					}
+				],
+				"methods" : []
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"MessageParser\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 4,\"Memory\" : 400},\"sig\" : [{\"kind\" : \"require\",\"type\" : \"HeaderAnalyser_LoadBalancerInterface\"}, {\"kind\" : \"require\",\"type\" : \"LinkAnalyser_LoadBalancerInterface\"}, {\"kind\" : \"require\",\"type\" : \"TextAnalyser_LoadBalancerInterface\"}, {\"kind\" : \"require\",\"type\" : \"AttachmentsManager_LoadBalancerInterface\"}, {\"kind\" : \"require\",\"type\" : \"MessageAnalyser_LoadBalancerInterface\"}, {\"kind\" : \"require\",\"type\" : \"DBInterface\"}],\"methods\" : []}]}"]
+class MessageParser(    HeaderAnalyser_LoadBalancerInterface headerAnalyserLoadBalancer,
+                        LinkAnalyser_LoadBalancerInterface linkAnalyserLoadBalancer,
+                        TextAnalyser_LoadBalancerInterface textAnalyserLoadBalancer,
+                        AttachmentsManager_LoadBalancerInterface attachmentsManagerLoadBalancer,
+						MessageAnalyser_LoadBalancerInterface messageAnalyserLoadBalancer,
+                        DBInterface db)              implements MessageParserInterface {
+
+
+    Unit parseMessage (String mailData){
+
+        //extract data from incoming email (mailData) and obtain the necessary information to create a MessageFields object
+
+        String headers = mailData + "_NetworkHeaders";
+        String sender = mailData + "_Sender";
+        Maybe<String> messageHeader = Just(mailData + "_MessageHeader");
+        Maybe<String> messageBody = Just(mailData + "_MessageBody");
+		//random generation of the number of links for the current mail (between 0 and 10)
+		Maybe< Set<String> > links = Nothing;
+		Set<String> linksSet = set[];
+		Int n_links = random(11);
+		if(n_links > 0){
+			Int i = 0;
+			while (i < n_links) {
+				linksSet = insertElement(linksSet, mailData + "_Link" + toString(i));
+				i = i + 1;
+			}
+			links = Just(linksSet);
+		}
+		//random generation of the number of attachments for the current mail (between 0 and 4)
+		Maybe< Set<String> > attachments = Nothing;
+		Set<String> attachmentsSet = set[];
+		Int n_attachments = random(5);
+		if(n_attachments > 0){
+			Int i = 0;
+			while (i < n_attachments) {
+				attachmentsSet = insertElement(attachmentsSet, mailData + "_Attachment" + toString(i));
+				i = i + 1;
+			}
+			attachments = Just(attachmentsSet);
+		}
+
+
+        //MessageFields object creation
+        MessageFields fields = MessageFields(headers, sender, messageHeader, messageBody, links, attachments);
+
+        //create message id
+        String messageId = toString(random(999999999));
+
+
+        //save infomation about the new mail in the db ( message id, number of attachments )
+        Set<String> actualAttachments = set[];
+        Int attachmentsNumber = 0;
+        if(  isJust( attachments(fields) )  ){
+            actualAttachments = fromJust( attachments(fields) );
+            attachmentsNumber = size(actualAttachments);
+        }
+        await db!insertMessageInformation(messageId, attachmentsNumber);
+
+
+        //call HeaderAnalysis with headers and message id
+        headerAnalyserLoadBalancer!newRequest( headers(fields) , messageId);
+
+
+        //call LinkAnalysis with links and message id
+        if(  isJust( links(fields) )    ){
+            Set<String> actualLinks = fromJust( links(fields) );
+            linkAnalyserLoadBalancer!newRequest( actualLinks , messageId);
+        }
+        else{
+            //warn messageAnalyser that no links
+            messageAnalyserLoadBalancer!insertLinksAnalysisResults( LinksAnalysis("", messageId) );
+        }
+
+
+        //call TextAnalysis with messageHeader, messageBody and message id
+        String actualMessageHeader = "";
+        String actualMessageBody = "";
+        if(  isJust( messageHeader(fields) )  ){
+            actualMessageHeader = fromJust( messageHeader(fields) );
+        }
+        if(  isJust( messageBody(fields) )  ){
+            actualMessageBody = fromJust( messageBody(fields) );
+        }
+        if(actualMessageHeader != "" || actualMessageBody != ""){
+            textAnalyserLoadBalancer!newRequest(actualMessageHeader, actualMessageBody, messageId);
+        }
+        else{
+            //warn messageAnalyser that there isn't text in the mail
+            messageAnalyserLoadBalancer!insertTextAnalysisResults( TextAnalysis("", messageId) );
+        }
+
+
+        //call AttachmentsManager with attachments and message id
+        if(actualAttachments != set[]){
+            attachmentsManagerLoadBalancer!newRequest(actualAttachments, messageId);
+        }
+
+    }
+
+}
+
+
+interface HeaderAnalyser_LoadBalancerInterface {
+    Unit connectInstance(HeaderAnalyserInterface newInstance);
+    HeaderAnalyserInterface disconnectInstance();
+    Unit newRequest (String headers, String messageId);
+}
+/*
+    {
+        "class" : "HeaderAnalyser_LoadBalancer",
+        "scenarios" : [
+            {
+                "name" : "default",
+                "provide" : -1,
+                "cost" : {
+                    "Cores" : 2,
+                    "Memory" : 200
+                },
+                "sig" : [],
+                "methods" : [
+                    {
+                        "add" : {
+                            "name" : "connectInstance",
+                            "param_type" : "HeaderAnalyserInterface"
+                        },
+                        "remove" : {
+                            "name" : "disconnectInstance",
+                            "return_type": "HeaderAnalyserInterface"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+*/
+[SmartDeployCost : "{\"class\" : \"HeaderAnalyser_LoadBalancer\", \"scenarios\" : [{ \"name\" : \"default\", \"provide\" : -1, \"cost\" : { \"Cores\" : 2, \"Memory\" : 200 }, \"sig\" : [], \"methods\" : [{ \"add\" : { \"name\" : \"connectInstance\", \"param_type\" : \"HeaderAnalyserInterface\" }, \"remove\" : { \"name\" : \"disconnectInstance\", \"return_type\": \"HeaderAnalyserInterface\" }}]}]}"]
+class HeaderAnalyser_LoadBalancer() implements HeaderAnalyser_LoadBalancerInterface {
+
+    List<HeaderAnalyserInterface> instancesConnected = list[];
+    Int nextInstance = 0;
+
+    Unit connectInstance(HeaderAnalyserInterface newInstance){
+        instancesConnected = appendright(instancesConnected, newInstance);
+    }
+
+    HeaderAnalyserInterface disconnectInstance(){
+        HeaderAnalyserInterface removedInstance = nth(instancesConnected, length(instancesConnected)-1);
+        instancesConnected = without(instancesConnected, removedInstance);
+        return removedInstance;
+    }
+
+    Unit newRequest (String headers, String messageId){
+        //apply a scheduler policy
+        HeaderAnalyserInterface selectedInstance = nth(instancesConnected, nextInstance);
+        nextInstance = (nextInstance + 1) % length(instancesConnected);
+
+        //send the request to the selectedInstance
+        selectedInstance!analyzeHeaders(headers, messageId);
+    }
+
+}
+
+
+data HeadersAnalysis = HeadersAnalysis(
+                        String haResults,
+                        String haMessageId
+                    );
+interface HeaderAnalyserInterface {
+    Unit analyzeHeaders (String headers, String messageId);
+}
+/*
+	{
+		"class" : "HeaderAnalyser",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 2,
+					"Memory" : 200
+				},
+				"sig" : [
+					{
+						"kind" : "require",
+						"type" : "MessageAnalyser_LoadBalancerInterface"
+					}
+				],
+				"methods" : []
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"HeaderAnalyser\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 2,\"Memory\" : 200},\"sig\" : [{\"kind\" : \"require\",\"type\" : \"MessageAnalyser_LoadBalancerInterface\"}],\"methods\" : []}]}"]
+class HeaderAnalyser(MessageAnalyser_LoadBalancerInterface messageAnalyserLoadBalancer) implements HeaderAnalyserInterface {
+
+    Unit analyzeHeaders (String headers, String messageId){
+
+        //analyze headers to extract useful high-level information
+
+        HeadersAnalysis res = HeadersAnalysis("Results of HeaderAnalysis (" + headers + ") by HeaderAnalyser in " + toString(thisDC()) , messageId);
+
+        //send analysis results (HeadersAnalysis object) to MessageAnalyser
+        messageAnalyserLoadBalancer!insertHeadersAnalysisResults(res);
+    }
+
+}
+
+
+interface LinkAnalyser_LoadBalancerInterface {
+    Unit connectInstance(LinkAnalyserInterface newInstance);
+    LinkAnalyserInterface disconnectInstance();
+    Unit newRequest (Set<String> links, String messageId);
+}
+/*
+	{
+		"class" : "LinkAnalyser_LoadBalancer",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 2,
+					"Memory" : 200
+				},
+				"sig" : [],
+                "methods" : [
+					{
+						"add" : {
+							"name" : "connectInstance",
+							"param_type" : "LinkAnalyserInterface"
+						},
+						"remove" : {
+							"name" : "disconnectInstance",
+                            "return_type": "LinkAnalyserInterface"
+						}
+					}
+				]
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"LinkAnalyser_LoadBalancer\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 2,\"Memory\" : 200},\"sig\" : [], \"methods\" : [{\"add\" : {\"name\" : \"connectInstance\",\"param_type\" : \"LinkAnalyserInterface\"},\"remove\" : {\"name\" : \"disconnectInstance\", \"return_type\": \"LinkAnalyserInterface\"}}]}]}"]
+class LinkAnalyser_LoadBalancer() implements LinkAnalyser_LoadBalancerInterface {
+
+    List<LinkAnalyserInterface> instancesConnected = list[];
+    Int nextInstance = 0;
+
+    Unit connectInstance(LinkAnalyserInterface newInstance){
+        instancesConnected = appendright(instancesConnected, newInstance);
+    }
+
+    LinkAnalyserInterface disconnectInstance(){
+        LinkAnalyserInterface removedInstance = nth(instancesConnected, length(instancesConnected)-1);
+        instancesConnected = without(instancesConnected, removedInstance);
+        return removedInstance;
+    }
+
+    Unit newRequest (Set<String> links, String messageId){
+        //apply a scheduler policy
+        LinkAnalyserInterface selectedInstance = nth(instancesConnected, nextInstance);
+        nextInstance = (nextInstance + 1) % length(instancesConnected);
+
+        //send the request to the selectedInstance
+        selectedInstance!analyzeLink(links, messageId);
+    }
+
+}
+
+
+data LinksAnalysis = LinksAnalysis(
+                        String laResults,
+                        String laMessageId
+                    );
+interface LinkAnalyserInterface {
+    Unit analyzeLink (Set<String> links, String messageId);
+}
+/*
+	{
+		"class" : "LinkAnalyser",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 2,
+					"Memory" : 200
+				},
+				"sig" : [
+					{
+						"kind" : "require",
+						"type" : "MessageAnalyser_LoadBalancerInterface"
+					}
+				],
+				"methods" : []
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"LinkAnalyser\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 2,\"Memory\" : 200},\"sig\" : [{\"kind\" : \"require\",\"type\" : \"MessageAnalyser_LoadBalancerInterface\"}],\"methods\" : []}]}"]
+class LinkAnalyser(MessageAnalyser_LoadBalancerInterface messageAnalyserLoadBalancer) implements LinkAnalyserInterface {
+
+    Unit analyzeLink (Set<String> links, String messageId){
+
+        //analyze each link in the set
+        while(size(links)>0){
+            String actualLink = take(links);
+            links = remove(links, actualLink);
+
+            //link analysis
+
+        }
+
+        LinksAnalysis res = LinksAnalysis("Results of LinkAnalysis by LinkAnalyser in " + toString(thisDC()) , messageId);
+
+        //send analysis results (LinksAnalysis object) to MessageAnalyser
+        messageAnalyserLoadBalancer!insertLinksAnalysisResults(res);
+    }
+
+}
+
+
+interface TextAnalyser_LoadBalancerInterface {
+    Unit connectInstance(TextAnalyserInterface newInstance);
+    TextAnalyserInterface disconnectInstance();
+    Unit newRequest (String messageHeader, String messageBody, String messageId);
+}
+/*
+	{
+		"class" : "TextAnalyser_LoadBalancer",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 2,
+					"Memory" : 200
+				},
+				"sig" : [],
+                "methods" : [
+					{
+						"add" : {
+							"name" : "connectInstance",
+							"param_type" : "TextAnalyserInterface"
+						},
+						"remove" : {
+							"name" : "disconnectInstance",
+                            "return_type": "TextAnalyserInterface"
+						}
+					}
+				]
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"TextAnalyser_LoadBalancer\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 2,\"Memory\" : 200},\"sig\" : [], \"methods\" : [{\"add\" : {\"name\" : \"connectInstance\",\"param_type\" : \"TextAnalyserInterface\"},\"remove\" : {\"name\" : \"disconnectInstance\", \"return_type\": \"TextAnalyserInterface\"}}]}]}"]
+class TextAnalyser_LoadBalancer() implements TextAnalyser_LoadBalancerInterface {
+
+    List<TextAnalyserInterface> instancesConnected = list[];
+    Int nextInstance = 0;
+
+    Unit connectInstance(TextAnalyserInterface newInstance){
+        instancesConnected = appendright(instancesConnected, newInstance);
+    }
+
+    TextAnalyserInterface disconnectInstance(){
+        TextAnalyserInterface removedInstance = nth(instancesConnected, length(instancesConnected)-1);
+        instancesConnected = without(instancesConnected, removedInstance);
+        return removedInstance;
+    }
+
+    Unit newRequest (String messageHeader, String messageBody, String messageId){
+        //apply a scheduler policy
+        TextAnalyserInterface selectedInstance = nth(instancesConnected, nextInstance);
+        nextInstance = (nextInstance + 1) % length(instancesConnected);
+
+        //send the request to the selectedInstance
+        selectedInstance!analyzeText(messageHeader, messageBody, messageId);
+    }
+
+}
+
+
+data TextAnalysis = TextAnalysis(
+                        String taResults,
+                        String taMessageId
+                    );
+interface TextAnalyserInterface {
+    Unit analyzeText (String messageHeader, String messageBody, String messageId);
+}
+/*
+	{
+		"class" : "TextAnalyser",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 2,
+					"Memory" : 200
+				},
+				"sig" : [
+                    {
+                        "kind" : "require",
+						"type" : "SentimentAnalyser_LoadBalancerInterface"
+                    },
+					{
+						"kind" : "require",
+						"type" : "MessageAnalyser_LoadBalancerInterface"
+					}
+				],
+				"methods" : []
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"TextAnalyser\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 2,\"Memory\" : 200},\"sig\" : [{ \"kind\" : \"require\",\"type\" : \"SentimentAnalyser_LoadBalancerInterface\" },{\"kind\" : \"require\",\"type\" : \"MessageAnalyser_LoadBalancerInterface\"}],\"methods\" : []}]}"]
+class TextAnalyser(SentimentAnalyser_LoadBalancerInterface sentimentAnalayserLoadBalancer, MessageAnalyser_LoadBalancerInterface messageAnalyserLoadBalancer) implements TextAnalyserInterface {
+
+    Unit analyzeText (String messageHeader, String messageBody, String messageId){
+
+        //analyze message header, notice that it can be an empty string
+        if(messageHeader != ""){
+            //message header analysis
+
+        }
+
+        //if there is a body it also launchs SentimentAnalysis
+        String sentimentAnalysisResults = "";
+        //analyze message body, notice that it can be an empty string
+        if(messageBody != ""){
+            //message body analysis
+
+
+			//random definition of the number of text block created to parallelize the sentiment analysis (between 1 and 4)
+ 			Int n_block = random(4) + 1;
+			List<Fut<String>> futSentimentAnalysisResultList = list[];
+			Int i = 0;
+			while (i < n_block) {
+				//launch the sentiment analysis on each block
+	            Fut<String> currentFuture = await sentimentAnalayserLoadBalancer!newRequest(messageBody + "_block" + toString(i));
+				futSentimentAnalysisResultList = appendright(futSentimentAnalysisResultList, currentFuture);
+				i = i + 1;
+			}
+
+			i = 0;
+			while (i < n_block) {
+				//wait the results from all sentiment analysers
+	            Fut<String> currentFuture = nth(futSentimentAnalysisResultList, i);
+				await currentFuture?;
+				String currentResult = currentFuture.get;
+				sentimentAnalysisResults = sentimentAnalysisResults + "\n\t\t" + currentResult;
+				i = i + 1;
+			}
+        }
+
+        TextAnalysis res = TextAnalysis("Results of TextAnalysis by TextAnalyser in " + toString(thisDC()) + " on: \n \t\t" + messageHeader + "\n \t\t" + messageBody + "\n \t\tSentimentAnalysis return:" + sentimentAnalysisResults, messageId);
+
+        //send analysis results (TextAnalysis object) to MessageAnalyser
+        messageAnalyserLoadBalancer!insertTextAnalysisResults(res);
+
+    }
+
+}
+
+
+interface SentimentAnalyser_LoadBalancerInterface {
+    Unit connectInstance(SentimentAnalyserInterface newInstance);
+    SentimentAnalyserInterface disconnectInstance();
+    Fut<String> newRequest (String messageBody);
+}
+/*
+	{
+		"class" : "SentimentAnalyser_LoadBalancer",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 2,
+					"Memory" : 200
+				},
+				"sig" : [],
+                "methods" : [
+					{
+						"add" : {
+							"name" : "connectInstance",
+							"param_type" : "SentimentAnalyserInterface"
+						},
+						"remove" : {
+							"name" : "disconnectInstance",
+                            "return_type": "SentimentAnalyserInterface"
+						}
+					}
+				]
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"SentimentAnalyser_LoadBalancer\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 2,\"Memory\" : 200},\"sig\" : [], \"methods\" : [{\"add\" : {\"name\" : \"connectInstance\",\"param_type\" : \"SentimentAnalyserInterface\"},\"remove\" : {\"name\" : \"disconnectInstance\", \"return_type\": \"SentimentAnalyserInterface\"}}]}]}"]
+class SentimentAnalyser_LoadBalancer() implements SentimentAnalyser_LoadBalancerInterface {
+
+    List<SentimentAnalyserInterface> instancesConnected = list[];
+    Int nextInstance = 0;
+
+    Unit connectInstance(SentimentAnalyserInterface newInstance){
+        instancesConnected = appendright(instancesConnected, newInstance);
+    }
+
+    SentimentAnalyserInterface disconnectInstance(){
+        SentimentAnalyserInterface removedInstance = nth(instancesConnected, length(instancesConnected)-1);
+        instancesConnected = without(instancesConnected, removedInstance);
+        return removedInstance;
+    }
+
+    Fut<String> newRequest (String messageBody){
+        //apply a scheduler policy
+        SentimentAnalyserInterface selectedInstance = nth(instancesConnected, nextInstance);
+        nextInstance = (nextInstance + 1) % length(instancesConnected);
+
+        //send the request to the selectedInstance
+        return selectedInstance!analyzeSentiments (messageBody);
+    }
+
+}
+
+
+interface SentimentAnalyserInterface {
+    String analyzeSentiments (String messageBody);
+}
+/*
+	{
+		"class" : "SentimentAnalyser",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 6,
+					"Memory" : 400
+				},
+				"sig" : [],
+				"methods" : []
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"SentimentAnalyser\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 6,\"Memory\" : 400},\"sig\" : [],\"methods\" : []}]}"]
+class SentimentAnalyser() implements SentimentAnalyserInterface {
+
+    String analyzeSentiments (String messageBody){
+
+        //analyze message body and return the results
+
+        return "SentimentAnalysis result of: " + messageBody + " by SentimentAnalyser in " + toString(thisDC()) ;
+    }
+
+}
+
+
+interface AttachmentsManager_LoadBalancerInterface {
+    Unit connectInstance(AttachmentsManagerInterface newInstance);
+    AttachmentsManagerInterface disconnectInstance();
+    Unit newRequest (Set<String> attachments, String messageId);
+}
+/*
+	{
+		"class" : "AttachmentsManager_LoadBalancer",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 2,
+					"Memory" : 200
+				},
+				"sig" : [],
+                "methods" : [
+					{
+						"add" : {
+							"name" : "connectInstance",
+							"param_type" : "AttachmentsManagerInterface"
+						},
+						"remove" : {
+							"name" : "disconnectInstance",
+                            "return_type": "AttachmentsManagerInterface"
+						}
+					}
+				]
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"AttachmentsManager_LoadBalancer\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 2,\"Memory\" : 200},\"sig\" : [], \"methods\" : [{\"add\" : {\"name\" : \"connectInstance\",\"param_type\" : \"AttachmentsManagerInterface\"},\"remove\" : {\"name\" : \"disconnectInstance\", \"return_type\": \"AttachmentsManagerInterface\"}}]}]}"]
+class AttachmentsManager_LoadBalancer() implements AttachmentsManager_LoadBalancerInterface {
+
+    List<AttachmentsManagerInterface> instancesConnected = list[];
+    Int nextInstance = 0;
+
+    Unit connectInstance(AttachmentsManagerInterface newInstance){
+        instancesConnected = appendright(instancesConnected, newInstance);
+    }
+
+    AttachmentsManagerInterface disconnectInstance(){
+        AttachmentsManagerInterface removedInstance = nth(instancesConnected, length(instancesConnected)-1);
+        instancesConnected = without(instancesConnected, removedInstance);
+        return removedInstance;
+    }
+
+    Unit newRequest (Set<String> attachments, String messageId){
+        //apply a scheduler policy
+        AttachmentsManagerInterface selectedInstance = nth(instancesConnected, nextInstance);
+        nextInstance = (nextInstance + 1) % length(instancesConnected);
+
+        //send the request to the selectedInstance
+        selectedInstance!manageAttachments(attachments, messageId);
+    }
+
+}
+
+
+interface AttachmentsManagerInterface {
+    Unit manageAttachments(Set<String> attachments, String messageId);
+}
+/*
+	{
+		"class" : "AttachmentsManager",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 2,
+					"Memory" : 200
+				},
+				"sig" : [
+                    {
+                        "kind" : "require",
+						"type" : "VirusScanner_LoadBalancerInterface"
+                    }
+				],
+				"methods" : []
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"AttachmentsManager\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 2,\"Memory\" : 200},\"sig\" : [ { \"kind\" : \"require\",\"type\" : \"VirusScanner_LoadBalancerInterface\" }],\"methods\" : []}]}"]
+class AttachmentsManager(VirusScanner_LoadBalancerInterface virusScannerLoadBalancer) implements AttachmentsManagerInterface {
+
+    Unit manageAttachments(Set<String> attachments, String messageId){
+
+        //foreach attachment call the virus scanner
+        while(size(attachments)>0){
+            String actualAttachment = take(attachments);
+            attachments = remove(attachments, actualAttachment);
+
+            virusScannerLoadBalancer!newRequest(actualAttachment, messageId);
+        }
+
+    }
+
+}
+
+
+interface VirusScanner_LoadBalancerInterface {
+    Unit connectInstance(VirusScannerInterface newInstance);
+    VirusScannerInterface disconnectInstance();
+    Unit newRequest (String attachment, String messageId);
+}
+/*
+	{
+		"class" : "VirusScanner_LoadBalancer",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 2,
+					"Memory" : 200
+				},
+				"sig" : [],
+                "methods" : [
+					{
+						"add" : {
+							"name" : "connectInstance",
+							"param_type" : "VirusScannerInterface"
+						},
+						"remove" : {
+							"name" : "disconnectInstance",
+                            "return_type": "VirusScannerInterface"
+						}
+					}
+				]
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"VirusScanner_LoadBalancer\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 2,\"Memory\" : 200},\"sig\" : [], \"methods\" : [{\"add\" : {\"name\" : \"connectInstance\",\"param_type\" : \"VirusScannerInterface\"},\"remove\" : {\"name\" : \"disconnectInstance\", \"return_type\": \"VirusScannerInterface\"}}]}]}"]
+class VirusScanner_LoadBalancer() implements VirusScanner_LoadBalancerInterface {
+
+    List<VirusScannerInterface> instancesConnected = list[];
+    Int nextInstance = 0;
+
+    Unit connectInstance(VirusScannerInterface newInstance){
+        instancesConnected = appendright(instancesConnected, newInstance);
+    }
+
+    VirusScannerInterface disconnectInstance(){
+        VirusScannerInterface removedInstance = nth(instancesConnected, length(instancesConnected)-1);
+        instancesConnected = without(instancesConnected, removedInstance);
+        return removedInstance;
+    }
+
+    Unit newRequest (String attachment, String messageId){
+        //apply a scheduler policy
+        VirusScannerInterface selectedInstance = nth(instancesConnected, nextInstance);
+        nextInstance = (nextInstance + 1) % length(instancesConnected);
+
+        //send the request to the selectedInstance
+        selectedInstance!scanAttachment (attachment, messageId);
+    }
+
+}
+
+
+interface VirusScannerInterface {
+    Unit scanAttachment (String attachment, String messageId);
+}
+/*
+	{
+		"class" : "VirusScanner",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 6,
+					"Memory" : 800
+				},
+				"sig" : [
+                    {
+                        "kind" : "require",
+						"type" : "ImageAnalyser_LoadBalancerInterface"
+                    },
+                    {
+                        "kind" : "require",
+						"type" : "MessageAnalyser_LoadBalancerInterface"
+                    }
+				],
+				"methods" : []
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"VirusScanner\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 6,\"Memory\" : 800},\"sig\" : [{ \"kind\" : \"require\",\"type\" : \"ImageAnalyser_LoadBalancerInterface\" }, { \"kind\" : \"require\",\"type\" : \"MessageAnalyser_LoadBalancerInterface\" }],\"methods\" : []}]}"]
+class VirusScanner(ImageAnalyser_LoadBalancerInterface imageAnalyserLoadBalancer, MessageAnalyser_LoadBalancerInterface messageAnalyserLoadBalancer) implements VirusScannerInterface {
+
+    Unit scanAttachment (String attachment, String messageId){
+
+		//scan attachment
+
+
+        Bool virusFound = random(5) == 0;
+
+        if(virusFound){
+            //if a virus is found, it send the analysis results directly to the MessageAnalyser
+            AttachmentAnalysis res = AttachmentAnalysis("VirusFound from VirusScanner in attachment: " + attachment + " by VirusScanner in " + toString(thisDC()) , messageId);
+            messageAnalyserLoadBalancer!insertAttachmentAnalysisResults(res);
+        }
+        else{
+            //otherwise if the attachment is OK, it call the corrisponding analyzer (with attachment and messageId)
+            imageAnalyserLoadBalancer!newRequest(attachment, messageId);
+        }
+
+    }
+
+}
+
+
+interface ImageAnalyser_LoadBalancerInterface {
+    Unit connectInstance(ImageAnalyserInterface newInstance);
+    ImageAnalyserInterface disconnectInstance();
+    Unit newRequest (String image, String messageId);
+}
+/*
+	{
+		"class" : "ImageAnalyser_LoadBalancer",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 2,
+					"Memory" : 200
+				},
+				"sig" : [],
+                "methods" : [
+					{
+						"add" : {
+							"name" : "connectInstance",
+							"param_type" : "ImageAnalyserInterface"
+						},
+						"remove" : {
+							"name" : "disconnectInstance",
+                            "return_type": "ImageAnalyserInterface"
+						}
+					}
+				]
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"ImageAnalyser_LoadBalancer\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 2,\"Memory\" : 200},\"sig\" : [], \"methods\" : [{\"add\" : {\"name\" : \"connectInstance\",\"param_type\" : \"ImageAnalyserInterface\"},\"remove\" : {\"name\" : \"disconnectInstance\", \"return_type\": \"ImageAnalyserInterface\"}}]}]}"]
+class ImageAnalyser_LoadBalancer() implements ImageAnalyser_LoadBalancerInterface {
+
+    List<ImageAnalyserInterface> instancesConnected = list[];
+    Int nextInstance = 0;
+
+    Unit connectInstance(ImageAnalyserInterface newInstance){
+        instancesConnected = appendright(instancesConnected, newInstance);
+    }
+
+    ImageAnalyserInterface disconnectInstance(){
+        ImageAnalyserInterface removedInstance = nth(instancesConnected, length(instancesConnected)-1);
+        instancesConnected = without(instancesConnected, removedInstance);
+        return removedInstance;
+    }
+
+    Unit newRequest (String image, String messageId){
+        //apply a scheduler policy
+        ImageAnalyserInterface selectedInstance = nth(instancesConnected, nextInstance);
+        nextInstance = (nextInstance + 1) % length(instancesConnected);
+
+        //send the request to the selectedInstance
+        selectedInstance!analyzeImage (image, messageId);
+    }
+
+}
+
+
+data AttachmentAnalysis = AttachmentAnalysis(
+                        String aaResults,
+                        String aaMessageId
+                    );
+interface ImageAnalyserInterface {
+    Unit analyzeImage (String image, String messageId);
+}
+/*
+	{
+		"class" : "ImageAnalyser",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 2,
+					"Memory" : 400
+				},
+				"sig" : [
+                    {
+                        "kind" : "require",
+						"type" : "NSFWDetector_LoadBalancerInterface"
+                    },
+                    {
+                        "kind" : "require",
+						"type" : "ImageRecognizer_LoadBalancerInterface"
+                    },
+                    {
+                        "kind" : "require",
+						"type" : "MessageAnalyser_LoadBalancerInterface"
+                    }
+				],
+				"methods" : []
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"ImageAnalyser\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 2,\"Memory\" : 400},\"sig\" : [{ \"kind\" : \"require\",\"type\" : \"NSFWDetector_LoadBalancerInterface\" }, { \"kind\" : \"require\",\"type\" : \"ImageRecognizer_LoadBalancerInterface\" }, { \"kind\" : \"require\",\"type\" : \"MessageAnalyser_LoadBalancerInterface\" }],\"methods\" : []}]}"]
+class ImageAnalyser(NSFWDetector_LoadBalancerInterface nsfwDetectorLoadBalancer, ImageRecognizer_LoadBalancerInterface imageRecognizerLoadBalancer, MessageAnalyser_LoadBalancerInterface messageAnalyserLoadBalancer) implements ImageAnalyserInterface {
+
+    Unit analyzeImage (String image, String messageId){
+
+        //image parameter is the base64 encoded version of the original image
+
+        //call the NSFWDetection and ImageRecognition on the image
+        Fut<Bool> futNSFW = await nsfwDetectorLoadBalancer!newRequest(image);
+        Fut<String> futImageCategory = await imageRecognizerLoadBalancer!newRequest(image);
+
+        //waiting the two results
+        await futNSFW?;
+        Bool nsfwResult = futNSFW.get;
+        await futImageCategory?;
+        String imageRecognitionResult = futImageCategory.get;
+
+        //use nsfwResult and imageRecognitionResult to create the attachment analysis result
+        AttachmentAnalysis res = AttachmentAnalysis("","");
+        if(nsfwResult){
+            res = AttachmentAnalysis("Image (" + image + ") not safe for work by ImageAnalyser in " + toString(thisDC()) , messageId);
+        }
+        else{
+            res = AttachmentAnalysis("Results of ImageAnalysis (" + image + ") - " + imageRecognitionResult + " by ImageAnalyser in " + toString(thisDC())  , messageId);
+        }
+
+        //send analysis results (AttachmentAnalysis object) to MessageAnalyser
+        messageAnalyserLoadBalancer!insertAttachmentAnalysisResults(res);
+
+    }
+
+}
+
+
+interface NSFWDetector_LoadBalancerInterface {
+    Unit connectInstance(NSFWDetectorInterface newInstance);
+    NSFWDetectorInterface disconnectInstance();
+    Fut<Bool> newRequest (String image);
+}
+/*
+	{
+		"class" : "NSFWDetector_LoadBalancer",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 2,
+					"Memory" : 200
+				},
+				"sig" : [],
+                "methods" : [
+					{
+						"add" : {
+							"name" : "connectInstance",
+							"param_type" : "NSFWDetectorInterface"
+						},
+						"remove" : {
+							"name" : "disconnectInstance",
+                            "return_type": "NSFWDetectorInterface"
+						}
+					}
+				]
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"NSFWDetector_LoadBalancer\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 2,\"Memory\" : 200},\"sig\" : [], \"methods\" : [{\"add\" : {\"name\" : \"connectInstance\",\"param_type\" : \"NSFWDetectorInterface\"},\"remove\" : {\"name\" : \"disconnectInstance\", \"return_type\": \"NSFWDetectorInterface\"}}]}]}"]
+class NSFWDetector_LoadBalancer() implements NSFWDetector_LoadBalancerInterface {
+
+    List<NSFWDetectorInterface> instancesConnected = list[];
+    Int nextInstance = 0;
+
+    Unit connectInstance(NSFWDetectorInterface newInstance){
+        instancesConnected = appendright(instancesConnected, newInstance);
+    }
+
+    NSFWDetectorInterface disconnectInstance(){
+        NSFWDetectorInterface removedInstance = nth(instancesConnected, length(instancesConnected)-1);
+        instancesConnected = without(instancesConnected, removedInstance);
+        return removedInstance;
+    }
+
+    Fut<Bool> newRequest (String image){
+        //apply a scheduler policy
+        NSFWDetectorInterface selectedInstance = nth(instancesConnected, nextInstance);
+        nextInstance = (nextInstance + 1) % length(instancesConnected);
+
+        //send the request to the selectedInstance
+        return selectedInstance!nsfwDetection(image);
+    }
+
+}
+
+
+interface NSFWDetectorInterface {
+    Bool nsfwDetection(String image);
+}
+/*
+	{
+		"class" : "NSFWDetector",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 6,
+					"Memory" : 800
+				},
+				"sig" : [],
+				"methods" : []
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"NSFWDetector\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 6,\"Memory\" : 800},\"sig\" : [],\"methods\" : []}]}"]
+class NSFWDetector() implements NSFWDetectorInterface {
+
+    Int yesOrNot = -1;
+
+    Bool nsfwDetection(String image){
+
+        //analyze the image to understand if it is safe for work or not
+
+
+        //it return false for two image and true for the third
+        yesOrNot = yesOrNot + 1;
+        return yesOrNot%3 == 0;
+
+    }
+
+}
+
+
+interface ImageRecognizer_LoadBalancerInterface {
+    Unit connectInstance(ImageRecognizerInterface newInstance);
+    ImageRecognizerInterface disconnectInstance();
+    Fut<String> newRequest (String image);
+}
+/*
+	{
+		"class" : "ImageRecognizer_LoadBalancer",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 2,
+					"Memory" : 200
+				},
+				"sig" : [],
+                "methods" : [
+					{
+						"add" : {
+							"name" : "connectInstance",
+							"param_type" : "ImageRecognizerInterface"
+						},
+						"remove" : {
+							"name" : "disconnectInstance",
+                            "return_type": "ImageRecognizerInterface"
+						}
+					}
+				]
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"ImageRecognizer_LoadBalancer\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 2,\"Memory\" : 200},\"sig\" : [], \"methods\" : [{\"add\" : {\"name\" : \"connectInstance\",\"param_type\" : \"ImageRecognizerInterface\"},\"remove\" : {\"name\" : \"disconnectInstance\", \"return_type\": \"ImageRecognizerInterface\"}}]}]}"]
+class ImageRecognizer_LoadBalancer() implements ImageRecognizer_LoadBalancerInterface {
+
+    List<ImageRecognizerInterface> instancesConnected = list[];
+    Int nextInstance = 0;
+
+    Unit connectInstance(ImageRecognizerInterface newInstance){
+        instancesConnected = appendright(instancesConnected, newInstance);
+    }
+
+    ImageRecognizerInterface disconnectInstance(){
+        ImageRecognizerInterface removedInstance = nth(instancesConnected, length(instancesConnected)-1);
+        instancesConnected = without(instancesConnected, removedInstance);
+        return removedInstance;
+    }
+
+    Fut<String> newRequest (String image){
+        //apply a scheduler policy
+        ImageRecognizerInterface selectedInstance = nth(instancesConnected, nextInstance);
+        nextInstance = (nextInstance + 1) % length(instancesConnected);
+
+        //send the request to the selectedInstance
+        return selectedInstance!recognizeImage(image);
+    }
+
+}
+
+
+interface ImageRecognizerInterface {
+    String recognizeImage(String image);
+}
+/*
+	{
+		"class" : "ImageRecognizer",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 6,
+					"Memory" : 800
+				},
+				"sig" : [],
+				"methods" : []
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"ImageRecognizer\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 6,\"Memory\" : 800},\"sig\" : [],\"methods\" : []}]}"]
+class ImageRecognizer() implements ImageRecognizerInterface {
+
+    Int category = -1;
+
+    String recognizeImage(String image){
+
+        //recognize the image
+
+
+        category = category + 1;
+        return "Category Recognized: " + toString(category) + " by ImageRecognizer in " + toString(thisDC()) ;
+
+    }
+
+}
+
+
+interface MessageAnalyser_LoadBalancerInterface {
+    Unit connectInstance(MessageAnalyserInterface newInstance);
+    MessageAnalyserInterface disconnectInstance();
+
+	Unit insertHeadersAnalysisResults(HeadersAnalysis res);
+	Unit insertLinksAnalysisResults(LinksAnalysis res);
+	Unit insertTextAnalysisResults(TextAnalysis res);
+	Unit insertAttachmentAnalysisResults(AttachmentAnalysis res);
+}
+/*
+	{
+		"class" : "MessageAnalyser_LoadBalancer",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 2,
+					"Memory" : 200
+				},
+				"sig" : [],
+          		"methods" : [
+					{
+						"add" : {
+							"name" : "connectInstance",
+							"param_type" : "MessageAnalyserInterface"
+						},
+						"remove" : {
+							"name" : "disconnectInstance",
+              				"return_type": "MessageAnalyserInterface"
+						}
+					}
+				]
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"MessageAnalyser_LoadBalancer\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 2,\"Memory\" : 200},\"sig\" : [], \"methods\" : [{\"add\" : {\"name\" : \"connectInstance\",\"param_type\" : \"MessageAnalyserInterface\"},\"remove\" : {\"name\" : \"disconnectInstance\", \"return_type\": \"MessageAnalyserInterface\"}}]}]}"]
+class MessageAnalyser_LoadBalancer() implements MessageAnalyser_LoadBalancerInterface {
+
+    List<MessageAnalyserInterface> instancesConnected = list[];
+    Int nextInstance = 0;
+
+    Unit connectInstance(MessageAnalyserInterface newInstance){
+        instancesConnected = appendright(instancesConnected, newInstance);
+    }
+
+    MessageAnalyserInterface disconnectInstance(){
+        MessageAnalyserInterface removedInstance = nth(instancesConnected, length(instancesConnected)-1);
+        instancesConnected = without(instancesConnected, removedInstance);
+        return removedInstance;
+    }
+
+    Unit insertHeadersAnalysisResults(HeadersAnalysis res){
+		//apply a scheduler policy
+		MessageAnalyserInterface selectedInstance = nth(instancesConnected, nextInstance);
+		nextInstance = (nextInstance + 1) % length(instancesConnected);
+
+		//send the request to the selectedInstance
+		selectedInstance!insertHeadersAnalysisResults (res);
+	}
+
+	Unit insertLinksAnalysisResults(LinksAnalysis res){
+		//apply a scheduler policy
+		MessageAnalyserInterface selectedInstance = nth(instancesConnected, nextInstance);
+		nextInstance = (nextInstance + 1) % length(instancesConnected);
+
+		//send the request to the selectedInstance
+		selectedInstance!insertLinksAnalysisResults (res);
+	}
+
+	Unit insertTextAnalysisResults(TextAnalysis res){
+		//apply a scheduler policy
+		MessageAnalyserInterface selectedInstance = nth(instancesConnected, nextInstance);
+		nextInstance = (nextInstance + 1) % length(instancesConnected);
+
+		//send the request to the selectedInstance
+		selectedInstance!insertTextAnalysisResults (res);
+	}
+	Unit insertAttachmentAnalysisResults(AttachmentAnalysis res){
+		//apply a scheduler policy
+		MessageAnalyserInterface selectedInstance = nth(instancesConnected, nextInstance);
+		nextInstance = (nextInstance + 1) % length(instancesConnected);
+
+		//send the request to the selectedInstance
+		selectedInstance!insertAttachmentAnalysisResults (res);
+	}
+
+}
+
+
+interface MessageAnalyserInterface {
+    Unit insertHeadersAnalysisResults(HeadersAnalysis res);
+    Unit insertLinksAnalysisResults(LinksAnalysis res);
+    Unit insertTextAnalysisResults(TextAnalysis res);
+    Unit insertAttachmentAnalysisResults(AttachmentAnalysis res);
+}
+/*
+	{
+		"class" : "MessageAnalyser",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 2,
+					"Memory" : 600
+				},
+				"sig" : [
+					{
+						"kind" : "require",
+						"type" : "DBInterface"
+					}
+				],
+				"methods" : []
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"MessageAnalyser\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 2,\"Memory\" : 600},\"sig\" : [{ \"kind\" : \"require\",\"type\" : \"DBInterface\" }],\"methods\" : []}]}"]
+class MessageAnalyser(DBInterface db) implements MessageAnalyserInterface {
+
+    Unit insertHeadersAnalysisResults(HeadersAnalysis res){
+
+        //insert the headers analysis results in the db
+		Int numberOfActivityWaiting = await db!insertHeadersAnalysisResults(res);
+        //check if all results are arrived
+        if(numberOfActivityWaiting == 0){
+            //if all results are arrived, call the final decision function
+            this!takeFinalDecision( haMessageId(res) );
+        }
+
+    }
+
+    Unit insertLinksAnalysisResults(LinksAnalysis res){
+
+        //insert the link analysis results in the db
+		Int numberOfActivityWaiting = await db!insertLinksAnalysisResults(res);
+        //check if all results are arrived
+        if(numberOfActivityWaiting == 0){
+            //if all results are arrived, call the final decision function
+            this!takeFinalDecision( laMessageId(res) );
+        }
+
+    }
+
+    Unit insertTextAnalysisResults(TextAnalysis res){
+
+        //insert the text analysis results in the db
+		Int numberOfActivityWaiting = await db!insertTextAnalysisResults(res);
+		//check if all results are arrived
+        if(numberOfActivityWaiting == 0){
+            //if all results are arrived, call the final decision function
+            this!takeFinalDecision( taMessageId(res) );
+        }
+
+    }
+
+    Unit insertAttachmentAnalysisResults(AttachmentAnalysis res){
+
+        //insert the attachment analysis results in the db
+		Int numberOfActivityWaiting = await db!insertAttachmentAnalysisResults(res);
+        //check if all results are arrived
+        if(numberOfActivityWaiting == 0){
+            //if all results are arrived, call the final decision function
+            this!takeFinalDecision(aaMessageId(res));
+        }
+
+    }
+
+    Unit takeFinalDecision(String messageId){
+
+        //use the information in the db for messageId to take the final decision
+
+        Results finalResults = await db!returnMessageResults(messageId);
+
+        //use finalResults object to take the final decision
+		String printString = "";
+		printString = printString + 	"MessageAnalyser in " + toString(thisDC()) + ": " 		  + "\n";
+        printString = printString + 	"Results of message \"" + messageId + "\" analysis:" 	  + "\n";
+        printString = printString +     "\t" + haResults(headerAnalysisResults(finalResults))     + "\n";
+        printString = printString +     "\t" + laResults(linkAnalysisResults(finalResults))       + "\n";
+        printString = printString +     "\t" + taResults(textAnalysisResults(finalResults))       + "\n";
+        //print each result in the attachmentAnalysisResults
+        Set< AttachmentAnalysis > remainingAttachmentAnalysisResults = attachmentAnalysisResults(finalResults);
+        while(size(remainingAttachmentAnalysisResults)>0){
+            AttachmentAnalysis actualAttachmentAnalysis = take(remainingAttachmentAnalysisResults);
+            remainingAttachmentAnalysisResults = remove(remainingAttachmentAnalysisResults, actualAttachmentAnalysis);
+
+            printString = printString +         "\t" + aaResults(actualAttachmentAnalysis)        + "\n";
+        }
+        //print all analysis results
+        println(printString);
+
+    }
+
+}
+
+
+data Results = Results(
+                        Int numberOfActivityWaiting,
+                        HeadersAnalysis headerAnalysisResults,
+                        LinksAnalysis linkAnalysisResults,
+                        TextAnalysis textAnalysisResults,
+                        Set< AttachmentAnalysis > attachmentAnalysisResults
+                    );
+exception MessageNotInstantiatedInTheMap;
+interface DBInterface {
+    Unit insertMessageInformation (String messageId, Int attachmentsNumber);
+
+    Int insertHeadersAnalysisResults(HeadersAnalysis res);
+    Int insertLinksAnalysisResults(LinksAnalysis res);
+    Int insertTextAnalysisResults(TextAnalysis res);
+    Int insertAttachmentAnalysisResults(AttachmentAnalysis res);
+
+	Results returnMessageResults(String messageId);
+}
+/*
+	{
+		"class" : "DB",
+		"scenarios" : [
+			{
+				"name" : "default",
+				"provide" : -1,
+				"cost" : {
+					"Cores" : 8,
+					"Memory" : 1000
+				},
+				"sig" : [],
+				"methods" : []
+			}
+		]
+	}
+*/
+[SmartDeployCost : "{\"class\" : \"DB\",\"scenarios\" : [{\"name\" : \"default\",\"provide\" : -1,\"cost\" : {\"Cores\" : 8,\"Memory\" : 1000},\"sig\" : [],\"methods\" : []}]}"]
+class DB() implements DBInterface {
+
+    Map<String, Results> actualMessages = map[];
+
+    Unit insertMessageInformation (String messageId, Int attachmentsNumber){
+
+        //create new message in the map with the corrisponding id
+        Results newResults = Results(3+attachmentsNumber, HeadersAnalysis("",""), LinksAnalysis("",""), TextAnalysis("",""), set[]);
+        actualMessages = insert(actualMessages, Pair(messageId,newResults));
+
+    }
+
+    Int insertHeadersAnalysisResults(HeadersAnalysis res){
+
+		Int numberOfActivityWaiting = -1;
+        //insert the headers analysis results in the map
+
+        //search the message with the corrisponding id
+        Maybe<Results> maybeActualResults = lookup(actualMessages, haMessageId(res));
+        if(  isJust( maybeActualResults )  ){
+            //if the message is in the map, obtain the information associated
+            Results actualResults = fromJust( maybeActualResults );
+            //create the new data structure with new and old information
+            actualResults = Results( numberOfActivityWaiting(actualResults) - 1, res, linkAnalysisResults(actualResults), textAnalysisResults(actualResults), attachmentAnalysisResults(actualResults));
+            //insert the new data structure in the map for the corrisponding id
+            actualMessages = put(actualMessages, haMessageId(res), actualResults);
+
+			numberOfActivityWaiting = numberOfActivityWaiting(actualResults);
+        }
+        else{
+            //error, it is not possible that the message is not in the map
+			throw MessageNotInstantiatedInTheMap;
+        }
+
+		return numberOfActivityWaiting;
+
+    }
+
+    Int insertLinksAnalysisResults(LinksAnalysis res){
+
+		Int numberOfActivityWaiting = -1;
+        //insert the link analysis results in the map
+
+        //search the message with the corrisponding id
+        Maybe<Results> maybeActualResults = lookup(actualMessages, laMessageId(res));
+        if(  isJust( maybeActualResults )  ){
+            //if the message is in the map, obtain the information associated
+            Results actualResults = fromJust( maybeActualResults );
+            //create the new data structure with new and old information
+            actualResults = Results( numberOfActivityWaiting(actualResults) - 1, headerAnalysisResults(actualResults), res, textAnalysisResults(actualResults), attachmentAnalysisResults(actualResults));
+            //insert the new data structure in the map for the corrisponding id
+            actualMessages = put(actualMessages, laMessageId(res), actualResults);
+
+			numberOfActivityWaiting = numberOfActivityWaiting(actualResults);
+        }
+        else{
+            //error, it is not possible that the message is not in the map
+			throw MessageNotInstantiatedInTheMap;
+        }
+
+		return numberOfActivityWaiting;
+    }
+
+    Int insertTextAnalysisResults(TextAnalysis res){
+
+		Int numberOfActivityWaiting = -1;
+        //insert the text analysis results in the map
+
+        //search the message with the corrisponding id
+        Maybe<Results> maybeActualResults = lookup(actualMessages, taMessageId(res));
+        if(  isJust( maybeActualResults )  ){
+            //if the message is in the map, obtain the information associated
+            Results actualResults = fromJust( maybeActualResults );
+            //create the new data structure with new and old information
+            actualResults = Results( numberOfActivityWaiting(actualResults) - 1, headerAnalysisResults(actualResults), linkAnalysisResults(actualResults), res, attachmentAnalysisResults(actualResults));
+            //insert the new data structure in the map for the corrisponding id
+            actualMessages = put(actualMessages, taMessageId(res), actualResults);
+
+            numberOfActivityWaiting = numberOfActivityWaiting(actualResults);
+        }
+        else{
+            //error, it is not possible that the message is not in the map
+			throw MessageNotInstantiatedInTheMap;
+        }
+
+		return numberOfActivityWaiting;
+    }
+
+    Int insertAttachmentAnalysisResults(AttachmentAnalysis res){
+
+		Int numberOfActivityWaiting = -1;
+        //insert the attachment analysis results in the map
+
+        //search the message with the corrisponding id
+        Maybe<Results> maybeActualResults = lookup(actualMessages, aaMessageId(res));
+        if(  isJust( maybeActualResults )  ){
+            //if the message is in the map, obtain the information associated
+            Results actualResults = fromJust( maybeActualResults );
+            //re-create the set of attachment analysis results inserting the new value
+            Set< AttachmentAnalysis > newAttachmentAnalysisResults = insertElement(attachmentAnalysisResults(actualResults), res);
+            //create the new data structure with new and old information
+            actualResults = Results( numberOfActivityWaiting(actualResults) - 1, headerAnalysisResults(actualResults), linkAnalysisResults(actualResults), textAnalysisResults(actualResults), newAttachmentAnalysisResults);
+            //insert the new data structure in the map for the corrisponding id
+            actualMessages = put(actualMessages, aaMessageId(res), actualResults);
+
+            numberOfActivityWaiting = numberOfActivityWaiting(actualResults);
+        }
+        else{
+            //error, it is not possible that the message is not in the map
+			throw MessageNotInstantiatedInTheMap;
+        }
+
+		return numberOfActivityWaiting;
+    }
+
+    Results returnMessageResults(String messageId){
+
+		Results messageResults = Results(-1, HeadersAnalysis("",""), LinksAnalysis("",""), TextAnalysis("",""), set[]);
+        //search the message with the corrisponding id
+        Maybe<Results> maybeFinalResults = lookup(actualMessages, messageId);
+        if(  isJust( maybeFinalResults )  ){
+            //if the message is in the map, obtain the information associated
+            messageResults = fromJust( maybeFinalResults );
+            //remove this mail form the map
+            actualMessages = removeKey(actualMessages, messageId);
+        }
+        else{
+            //error, it is not possible that the message is not in the map
+			throw MessageNotInstantiatedInTheMap;
+        }
+
+		return messageResults;
+    }
+
+}
+
+// MAIN
+///////////
+{
+	CloudProvider cp = new CloudProvider("CloudProvider");
+	MainSmartDeployer c1 = new local MainSmartDeployer(cp);
+	c1.deploy();
+	println("Initial Deployment Configuration set up");
+
+	//start test
+	List<MessageReceiverInterface> messageReceiverList = c1.getMessageReceiverInterface();
+	MessageReceiverInterface messageReceiver = head(messageReceiverList);
+
+	List<MessageParser_LoadBalancerInterface> messageParser_LoadBalancerList = c1.getMessageParser_LoadBalancerInterface();
+	List<HeaderAnalyser_LoadBalancerInterface> headerAnalyser_LoadBalancerList = c1.getHeaderAnalyser_LoadBalancerInterface();
+	List<LinkAnalyser_LoadBalancerInterface> linkAnalyser_LoadBalancerList = c1.getLinkAnalyser_LoadBalancerInterface();
+	List<TextAnalyser_LoadBalancerInterface> textAnalyser_LoadBalancerList = c1.getTextAnalyser_LoadBalancerInterface();
+	List<SentimentAnalyser_LoadBalancerInterface> sentimentAnalyser_LoadBalancerList = c1.getSentimentAnalyser_LoadBalancerInterface();
+	List<AttachmentsManager_LoadBalancerInterface> attachmentsManager_LoadBalancerList = c1.getAttachmentsManager_LoadBalancerInterface();
+	List<VirusScanner_LoadBalancerInterface> virusScanner_LoadBalancerList = c1.getVirusScanner_LoadBalancerInterface();
+	List<ImageAnalyser_LoadBalancerInterface> imageAnalyser_LoadBalancerList = c1.getImageAnalyser_LoadBalancerInterface();
+	List<NSFWDetector_LoadBalancerInterface> nsfwDetector_LoadBalancerList = c1.getNSFWDetector_LoadBalancerInterface();
+	List<ImageRecognizer_LoadBalancerInterface> imageRecognizer_LoadBalancerList = c1.getImageRecognizer_LoadBalancerInterface();
+	List<MessageAnalyser_LoadBalancerInterface> messageAnalyser_LoadBalancerList = c1.getMessageAnalyser_LoadBalancerInterface();
+
+	List<DBInterface> db_List = c1.getDBInterface();
+
+	Scale1 s1 = new local Scale1(cp, head(messageParser_LoadBalancerList), head(headerAnalyser_LoadBalancerList), head(linkAnalyser_LoadBalancerList), head(textAnalyser_LoadBalancerList), head(sentimentAnalyser_LoadBalancerList), head(attachmentsManager_LoadBalancerList), head(virusScanner_LoadBalancerList), head(imageAnalyser_LoadBalancerList), head(nsfwDetector_LoadBalancerList), head(imageRecognizer_LoadBalancerList), head(messageAnalyser_LoadBalancerList), head(db_List));
+	Scale2 s2 = new local Scale2(cp, head(messageParser_LoadBalancerList), head(headerAnalyser_LoadBalancerList), head(linkAnalyser_LoadBalancerList), head(textAnalyser_LoadBalancerList), head(sentimentAnalyser_LoadBalancerList), head(attachmentsManager_LoadBalancerList), head(virusScanner_LoadBalancerList), head(imageAnalyser_LoadBalancerList), head(nsfwDetector_LoadBalancerList), head(imageRecognizer_LoadBalancerList), head(messageAnalyser_LoadBalancerList), head(db_List));
+	Scale3 s3 = new local Scale3(cp, head(messageParser_LoadBalancerList), head(headerAnalyser_LoadBalancerList), head(linkAnalyser_LoadBalancerList), head(textAnalyser_LoadBalancerList), head(sentimentAnalyser_LoadBalancerList), head(attachmentsManager_LoadBalancerList), head(virusScanner_LoadBalancerList), head(imageAnalyser_LoadBalancerList), head(nsfwDetector_LoadBalancerList), head(imageRecognizer_LoadBalancerList), head(messageAnalyser_LoadBalancerList), head(db_List));
+
+	s1.deploy();
+	println("\n\nScale1 Configuration set up\n\n");
+
+	messageReceiver!newMessage("Message1");
+	messageReceiver!newMessage("Message2");
+	messageReceiver!newMessage("Message3");
+	messageReceiver!newMessage("Message4");
+	messageReceiver!newMessage("Message5");
+	messageReceiver!newMessage("Message6");
+	messageReceiver!newMessage("Message7");
+	messageReceiver!newMessage("Message8");
+	messageReceiver!newMessage("Message9");
+	messageReceiver!newMessage("Message10");
+
+	s2.deploy();
+	println("\n\nScale2 Configuration set up\n\n");
+
+	messageReceiver!newMessage("Message11");
+	messageReceiver!newMessage("Message12");
+	messageReceiver!newMessage("Message13");
+	messageReceiver!newMessage("Message14");
+	messageReceiver!newMessage("Message15");
+	messageReceiver!newMessage("Message16");
+	messageReceiver!newMessage("Message17");
+	messageReceiver!newMessage("Message18");
+	messageReceiver!newMessage("Message19");
+	messageReceiver!newMessage("Message20");
+
+	s3.deploy();
+	println("\n\nScale3 Configuration set up\n\n");	
+	
+	messageReceiver!newMessage("Message21");
+	messageReceiver!newMessage("Message22");
+	messageReceiver!newMessage("Message23");
+	messageReceiver!newMessage("Message24");
+	messageReceiver!newMessage("Message25");
+	messageReceiver!newMessage("Message26");
+	messageReceiver!newMessage("Message27");
+	messageReceiver!newMessage("Message28");
+	messageReceiver!newMessage("Message29");
+	messageReceiver!newMessage("Message30");
+
+}

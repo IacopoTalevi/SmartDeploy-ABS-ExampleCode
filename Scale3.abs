@@ -1,0 +1,493 @@
+module Scale3;
+export *;
+import * from ABS.DC;
+import * from IacopoTest;
+
+interface Scale3{
+	List<DBInterface> getDBInterface();
+	List<HeaderAnalyser_LoadBalancerInterface> getHeaderAnalyser_LoadBalancerInterface();
+	List<NSFWDetectorInterface> getNSFWDetectorInterface();
+	List<AttachmentsManager_LoadBalancerInterface> getAttachmentsManager_LoadBalancerInterface();
+	List<ImageAnalyserInterface> getImageAnalyserInterface();
+	List<ImageAnalyser_LoadBalancerInterface> getImageAnalyser_LoadBalancerInterface();
+	List<MessageReceiverInterface> getMessageReceiverInterface();
+	List<TextAnalyserInterface> getTextAnalyserInterface();
+	List<MessageAnalyser_LoadBalancerInterface> getMessageAnalyser_LoadBalancerInterface();
+	List<MessageParser_LoadBalancerInterface> getMessageParser_LoadBalancerInterface();
+	List<SentimentAnalyser_LoadBalancerInterface> getSentimentAnalyser_LoadBalancerInterface();
+	List<TextAnalyser_LoadBalancerInterface> getTextAnalyser_LoadBalancerInterface();
+	List<SentimentAnalyserInterface> getSentimentAnalyserInterface();
+	List<ImageRecognizerInterface> getImageRecognizerInterface();
+	List<AttachmentsManagerInterface> getAttachmentsManagerInterface();
+	List<NSFWDetector_LoadBalancerInterface> getNSFWDetector_LoadBalancerInterface();
+	List<HeaderAnalyserInterface> getHeaderAnalyserInterface();
+	List<MessageAnalyserInterface> getMessageAnalyserInterface();
+	List<ImageRecognizer_LoadBalancerInterface> getImageRecognizer_LoadBalancerInterface();
+	List<MessageParserInterface> getMessageParserInterface();
+	List<VirusScanner_LoadBalancerInterface> getVirusScanner_LoadBalancerInterface();
+	List<VirusScannerInterface> getVirusScannerInterface();
+	List<LinkAnalyserInterface> getLinkAnalyserInterface();
+	List<LinkAnalyser_LoadBalancerInterface> getLinkAnalyser_LoadBalancerInterface();
+	List<DeploymentComponent> getDeploymentComponent();
+	Unit deploy();
+	Unit undeploy();
+}
+
+class Scale3(CloudProvider cloudProvider, MessageParser_LoadBalancerInterface messageParser_LoadBalancerObj, HeaderAnalyser_LoadBalancerInterface headerAnalyser_LoadBalancerObj, LinkAnalyser_LoadBalancerInterface linkAnalyser_LoadBalancerObj, TextAnalyser_LoadBalancerInterface textAnalyser_LoadBalancerObj, SentimentAnalyser_LoadBalancerInterface sentimentAnalyser_LoadBalancerObj, AttachmentsManager_LoadBalancerInterface attachmentsManager_LoadBalancerObj, VirusScanner_LoadBalancerInterface virusScanner_LoadBalancerObj, ImageAnalyser_LoadBalancerInterface imageAnalyser_LoadBalancerObj, NSFWDetector_LoadBalancerInterface nsfwDetector_LoadBalancerObj, ImageRecognizer_LoadBalancerInterface imageRecognizer_LoadBalancerObj, MessageAnalyser_LoadBalancerInterface messageAnalyser_LoadBalancerObj, DBInterface dbObj) implements Scale3{
+
+	List<List<DBInterface>> ls_ls_DBInterface = Nil;
+	List<DBInterface> ls_DBInterface = Nil;
+	List<List<HeaderAnalyser_LoadBalancerInterface>> ls_ls_HeaderAnalyser_LoadBalancerInterface = Nil;
+	List<HeaderAnalyser_LoadBalancerInterface> ls_HeaderAnalyser_LoadBalancerInterface = Nil;
+	List<List<NSFWDetectorInterface>> ls_ls_NSFWDetectorInterface = Nil;
+	List<NSFWDetectorInterface> ls_NSFWDetectorInterface = Nil;
+	List<List<AttachmentsManager_LoadBalancerInterface>> ls_ls_AttachmentsManager_LoadBalancerInterface = Nil;
+	List<AttachmentsManager_LoadBalancerInterface> ls_AttachmentsManager_LoadBalancerInterface = Nil;
+	List<List<ImageAnalyserInterface>> ls_ls_ImageAnalyserInterface = Nil;
+	List<ImageAnalyserInterface> ls_ImageAnalyserInterface = Nil;
+	List<List<ImageAnalyser_LoadBalancerInterface>> ls_ls_ImageAnalyser_LoadBalancerInterface = Nil;
+	List<ImageAnalyser_LoadBalancerInterface> ls_ImageAnalyser_LoadBalancerInterface = Nil;
+	List<List<MessageReceiverInterface>> ls_ls_MessageReceiverInterface = Nil;
+	List<MessageReceiverInterface> ls_MessageReceiverInterface = Nil;
+	List<List<TextAnalyserInterface>> ls_ls_TextAnalyserInterface = Nil;
+	List<TextAnalyserInterface> ls_TextAnalyserInterface = Nil;
+	List<List<MessageAnalyser_LoadBalancerInterface>> ls_ls_MessageAnalyser_LoadBalancerInterface = Nil;
+	List<MessageAnalyser_LoadBalancerInterface> ls_MessageAnalyser_LoadBalancerInterface = Nil;
+	List<List<MessageParser_LoadBalancerInterface>> ls_ls_MessageParser_LoadBalancerInterface = Nil;
+	List<MessageParser_LoadBalancerInterface> ls_MessageParser_LoadBalancerInterface = Nil;
+	List<List<SentimentAnalyser_LoadBalancerInterface>> ls_ls_SentimentAnalyser_LoadBalancerInterface = Nil;
+	List<SentimentAnalyser_LoadBalancerInterface> ls_SentimentAnalyser_LoadBalancerInterface = Nil;
+	List<List<TextAnalyser_LoadBalancerInterface>> ls_ls_TextAnalyser_LoadBalancerInterface = Nil;
+	List<TextAnalyser_LoadBalancerInterface> ls_TextAnalyser_LoadBalancerInterface = Nil;
+	List<List<SentimentAnalyserInterface>> ls_ls_SentimentAnalyserInterface = Nil;
+	List<SentimentAnalyserInterface> ls_SentimentAnalyserInterface = Nil;
+	List<List<ImageRecognizerInterface>> ls_ls_ImageRecognizerInterface = Nil;
+	List<ImageRecognizerInterface> ls_ImageRecognizerInterface = Nil;
+	List<List<AttachmentsManagerInterface>> ls_ls_AttachmentsManagerInterface = Nil;
+	List<AttachmentsManagerInterface> ls_AttachmentsManagerInterface = Nil;
+	List<List<NSFWDetector_LoadBalancerInterface>> ls_ls_NSFWDetector_LoadBalancerInterface = Nil;
+	List<NSFWDetector_LoadBalancerInterface> ls_NSFWDetector_LoadBalancerInterface = Nil;
+	List<List<HeaderAnalyserInterface>> ls_ls_HeaderAnalyserInterface = Nil;
+	List<HeaderAnalyserInterface> ls_HeaderAnalyserInterface = Nil;
+	List<List<MessageAnalyserInterface>> ls_ls_MessageAnalyserInterface = Nil;
+	List<MessageAnalyserInterface> ls_MessageAnalyserInterface = Nil;
+	List<List<ImageRecognizer_LoadBalancerInterface>> ls_ls_ImageRecognizer_LoadBalancerInterface = Nil;
+	List<ImageRecognizer_LoadBalancerInterface> ls_ImageRecognizer_LoadBalancerInterface = Nil;
+	List<List<MessageParserInterface>> ls_ls_MessageParserInterface = Nil;
+	List<MessageParserInterface> ls_MessageParserInterface = Nil;
+	List<List<VirusScanner_LoadBalancerInterface>> ls_ls_VirusScanner_LoadBalancerInterface = Nil;
+	List<VirusScanner_LoadBalancerInterface> ls_VirusScanner_LoadBalancerInterface = Nil;
+	List<List<VirusScannerInterface>> ls_ls_VirusScannerInterface = Nil;
+	List<VirusScannerInterface> ls_VirusScannerInterface = Nil;
+	List<List<LinkAnalyserInterface>> ls_ls_LinkAnalyserInterface = Nil;
+	List<LinkAnalyserInterface> ls_LinkAnalyserInterface = Nil;
+	List<List<LinkAnalyser_LoadBalancerInterface>> ls_ls_LinkAnalyser_LoadBalancerInterface = Nil;
+	List<LinkAnalyser_LoadBalancerInterface> ls_LinkAnalyser_LoadBalancerInterface = Nil;
+	List<List<DeploymentComponent>> ls_ls_DeploymentComponent = Nil;
+	List<DeploymentComponent> ls_DeploymentComponent = Nil;
+	{
+		cloudProvider.addInstanceDescription(Pair("c4_large_eu",
+			map[Pair(CostPerInterval,119)
+			,Pair(PaymentInterval,1)
+			,Pair(Cores,2)
+			,Pair(Bandwidth,500)
+			,Pair(Memory,375)
+			]));
+		cloudProvider.addInstanceDescription(Pair("c4_xlarge_eu",
+			map[Pair(CostPerInterval,237)
+			,Pair(PaymentInterval,1)
+			,Pair(Cores,4)
+			,Pair(Bandwidth,750)
+			,Pair(Memory,750)
+			]));
+		cloudProvider.addInstanceDescription(Pair("c4_2xlarge_eu",
+			map[Pair(CostPerInterval,476)
+			,Pair(PaymentInterval,1)
+			,Pair(Cores,8)
+			,Pair(Bandwidth,1000)
+			,Pair(Memory,1500)
+			]));
+	}
+
+	List<DBInterface> getDBInterface() { return ls_DBInterface; }
+	List<HeaderAnalyser_LoadBalancerInterface> getHeaderAnalyser_LoadBalancerInterface() { return ls_HeaderAnalyser_LoadBalancerInterface; }
+	List<NSFWDetectorInterface> getNSFWDetectorInterface() { return ls_NSFWDetectorInterface; }
+	List<AttachmentsManager_LoadBalancerInterface> getAttachmentsManager_LoadBalancerInterface() { return ls_AttachmentsManager_LoadBalancerInterface; }
+	List<ImageAnalyserInterface> getImageAnalyserInterface() { return ls_ImageAnalyserInterface; }
+	List<ImageAnalyser_LoadBalancerInterface> getImageAnalyser_LoadBalancerInterface() { return ls_ImageAnalyser_LoadBalancerInterface; }
+	List<MessageReceiverInterface> getMessageReceiverInterface() { return ls_MessageReceiverInterface; }
+	List<TextAnalyserInterface> getTextAnalyserInterface() { return ls_TextAnalyserInterface; }
+	List<MessageAnalyser_LoadBalancerInterface> getMessageAnalyser_LoadBalancerInterface() { return ls_MessageAnalyser_LoadBalancerInterface; }
+	List<MessageParser_LoadBalancerInterface> getMessageParser_LoadBalancerInterface() { return ls_MessageParser_LoadBalancerInterface; }
+	List<SentimentAnalyser_LoadBalancerInterface> getSentimentAnalyser_LoadBalancerInterface() { return ls_SentimentAnalyser_LoadBalancerInterface; }
+	List<TextAnalyser_LoadBalancerInterface> getTextAnalyser_LoadBalancerInterface() { return ls_TextAnalyser_LoadBalancerInterface; }
+	List<SentimentAnalyserInterface> getSentimentAnalyserInterface() { return ls_SentimentAnalyserInterface; }
+	List<ImageRecognizerInterface> getImageRecognizerInterface() { return ls_ImageRecognizerInterface; }
+	List<AttachmentsManagerInterface> getAttachmentsManagerInterface() { return ls_AttachmentsManagerInterface; }
+	List<NSFWDetector_LoadBalancerInterface> getNSFWDetector_LoadBalancerInterface() { return ls_NSFWDetector_LoadBalancerInterface; }
+	List<HeaderAnalyserInterface> getHeaderAnalyserInterface() { return ls_HeaderAnalyserInterface; }
+	List<MessageAnalyserInterface> getMessageAnalyserInterface() { return ls_MessageAnalyserInterface; }
+	List<ImageRecognizer_LoadBalancerInterface> getImageRecognizer_LoadBalancerInterface() { return ls_ImageRecognizer_LoadBalancerInterface; }
+	List<MessageParserInterface> getMessageParserInterface() { return ls_MessageParserInterface; }
+	List<VirusScanner_LoadBalancerInterface> getVirusScanner_LoadBalancerInterface() { return ls_VirusScanner_LoadBalancerInterface; }
+	List<VirusScannerInterface> getVirusScannerInterface() { return ls_VirusScannerInterface; }
+	List<LinkAnalyserInterface> getLinkAnalyserInterface() { return ls_LinkAnalyserInterface; }
+	List<LinkAnalyser_LoadBalancerInterface> getLinkAnalyser_LoadBalancerInterface() { return ls_LinkAnalyser_LoadBalancerInterface; }
+	List<DeploymentComponent> getDeploymentComponent() { return ls_DeploymentComponent; }
+
+	Unit deploy() {
+		ls_ls_DBInterface = Cons(ls_DBInterface,ls_ls_DBInterface);
+		ls_DBInterface = Nil;
+		ls_ls_HeaderAnalyser_LoadBalancerInterface = Cons(ls_HeaderAnalyser_LoadBalancerInterface,ls_ls_HeaderAnalyser_LoadBalancerInterface);
+		ls_HeaderAnalyser_LoadBalancerInterface = Nil;
+		ls_ls_NSFWDetectorInterface = Cons(ls_NSFWDetectorInterface,ls_ls_NSFWDetectorInterface);
+		ls_NSFWDetectorInterface = Nil;
+		ls_ls_AttachmentsManager_LoadBalancerInterface = Cons(ls_AttachmentsManager_LoadBalancerInterface,ls_ls_AttachmentsManager_LoadBalancerInterface);
+		ls_AttachmentsManager_LoadBalancerInterface = Nil;
+		ls_ls_ImageAnalyserInterface = Cons(ls_ImageAnalyserInterface,ls_ls_ImageAnalyserInterface);
+		ls_ImageAnalyserInterface = Nil;
+		ls_ls_ImageAnalyser_LoadBalancerInterface = Cons(ls_ImageAnalyser_LoadBalancerInterface,ls_ls_ImageAnalyser_LoadBalancerInterface);
+		ls_ImageAnalyser_LoadBalancerInterface = Nil;
+		ls_ls_MessageReceiverInterface = Cons(ls_MessageReceiverInterface,ls_ls_MessageReceiverInterface);
+		ls_MessageReceiverInterface = Nil;
+		ls_ls_TextAnalyserInterface = Cons(ls_TextAnalyserInterface,ls_ls_TextAnalyserInterface);
+		ls_TextAnalyserInterface = Nil;
+		ls_ls_MessageAnalyser_LoadBalancerInterface = Cons(ls_MessageAnalyser_LoadBalancerInterface,ls_ls_MessageAnalyser_LoadBalancerInterface);
+		ls_MessageAnalyser_LoadBalancerInterface = Nil;
+		ls_ls_MessageParser_LoadBalancerInterface = Cons(ls_MessageParser_LoadBalancerInterface,ls_ls_MessageParser_LoadBalancerInterface);
+		ls_MessageParser_LoadBalancerInterface = Nil;
+		ls_ls_SentimentAnalyser_LoadBalancerInterface = Cons(ls_SentimentAnalyser_LoadBalancerInterface,ls_ls_SentimentAnalyser_LoadBalancerInterface);
+		ls_SentimentAnalyser_LoadBalancerInterface = Nil;
+		ls_ls_TextAnalyser_LoadBalancerInterface = Cons(ls_TextAnalyser_LoadBalancerInterface,ls_ls_TextAnalyser_LoadBalancerInterface);
+		ls_TextAnalyser_LoadBalancerInterface = Nil;
+		ls_ls_SentimentAnalyserInterface = Cons(ls_SentimentAnalyserInterface,ls_ls_SentimentAnalyserInterface);
+		ls_SentimentAnalyserInterface = Nil;
+		ls_ls_ImageRecognizerInterface = Cons(ls_ImageRecognizerInterface,ls_ls_ImageRecognizerInterface);
+		ls_ImageRecognizerInterface = Nil;
+		ls_ls_AttachmentsManagerInterface = Cons(ls_AttachmentsManagerInterface,ls_ls_AttachmentsManagerInterface);
+		ls_AttachmentsManagerInterface = Nil;
+		ls_ls_NSFWDetector_LoadBalancerInterface = Cons(ls_NSFWDetector_LoadBalancerInterface,ls_ls_NSFWDetector_LoadBalancerInterface);
+		ls_NSFWDetector_LoadBalancerInterface = Nil;
+		ls_ls_HeaderAnalyserInterface = Cons(ls_HeaderAnalyserInterface,ls_ls_HeaderAnalyserInterface);
+		ls_HeaderAnalyserInterface = Nil;
+		ls_ls_MessageAnalyserInterface = Cons(ls_MessageAnalyserInterface,ls_ls_MessageAnalyserInterface);
+		ls_MessageAnalyserInterface = Nil;
+		ls_ls_ImageRecognizer_LoadBalancerInterface = Cons(ls_ImageRecognizer_LoadBalancerInterface,ls_ls_ImageRecognizer_LoadBalancerInterface);
+		ls_ImageRecognizer_LoadBalancerInterface = Nil;
+		ls_ls_MessageParserInterface = Cons(ls_MessageParserInterface,ls_ls_MessageParserInterface);
+		ls_MessageParserInterface = Nil;
+		ls_ls_VirusScanner_LoadBalancerInterface = Cons(ls_VirusScanner_LoadBalancerInterface,ls_ls_VirusScanner_LoadBalancerInterface);
+		ls_VirusScanner_LoadBalancerInterface = Nil;
+		ls_ls_VirusScannerInterface = Cons(ls_VirusScannerInterface,ls_ls_VirusScannerInterface);
+		ls_VirusScannerInterface = Nil;
+		ls_ls_LinkAnalyserInterface = Cons(ls_LinkAnalyserInterface,ls_ls_LinkAnalyserInterface);
+		ls_LinkAnalyserInterface = Nil;
+		ls_ls_LinkAnalyser_LoadBalancerInterface = Cons(ls_LinkAnalyser_LoadBalancerInterface,ls_ls_LinkAnalyser_LoadBalancerInterface);
+		ls_LinkAnalyser_LoadBalancerInterface = Nil;
+		ls_ls_DeploymentComponent = Cons(ls_DeploymentComponent,ls_ls_DeploymentComponent);
+		ls_DeploymentComponent = Nil;
+		this.deploy_aux();
+	}
+
+	Unit undeploy() {
+		if (ls_ls_DeploymentComponent != Nil) {
+			this.undeploy_aux();
+			ls_ls_DBInterface = tail(ls_ls_DBInterface);
+			ls_ls_HeaderAnalyser_LoadBalancerInterface = tail(ls_ls_HeaderAnalyser_LoadBalancerInterface);
+			ls_ls_NSFWDetectorInterface = tail(ls_ls_NSFWDetectorInterface);
+			ls_ls_AttachmentsManager_LoadBalancerInterface = tail(ls_ls_AttachmentsManager_LoadBalancerInterface);
+			ls_ls_ImageAnalyserInterface = tail(ls_ls_ImageAnalyserInterface);
+			ls_ls_ImageAnalyser_LoadBalancerInterface = tail(ls_ls_ImageAnalyser_LoadBalancerInterface);
+			ls_ls_MessageReceiverInterface = tail(ls_ls_MessageReceiverInterface);
+			ls_ls_TextAnalyserInterface = tail(ls_ls_TextAnalyserInterface);
+			ls_ls_MessageAnalyser_LoadBalancerInterface = tail(ls_ls_MessageAnalyser_LoadBalancerInterface);
+			ls_ls_MessageParser_LoadBalancerInterface = tail(ls_ls_MessageParser_LoadBalancerInterface);
+			ls_ls_SentimentAnalyser_LoadBalancerInterface = tail(ls_ls_SentimentAnalyser_LoadBalancerInterface);
+			ls_ls_TextAnalyser_LoadBalancerInterface = tail(ls_ls_TextAnalyser_LoadBalancerInterface);
+			ls_ls_SentimentAnalyserInterface = tail(ls_ls_SentimentAnalyserInterface);
+			ls_ls_ImageRecognizerInterface = tail(ls_ls_ImageRecognizerInterface);
+			ls_ls_AttachmentsManagerInterface = tail(ls_ls_AttachmentsManagerInterface);
+			ls_ls_NSFWDetector_LoadBalancerInterface = tail(ls_ls_NSFWDetector_LoadBalancerInterface);
+			ls_ls_HeaderAnalyserInterface = tail(ls_ls_HeaderAnalyserInterface);
+			ls_ls_MessageAnalyserInterface = tail(ls_ls_MessageAnalyserInterface);
+			ls_ls_ImageRecognizer_LoadBalancerInterface = tail(ls_ls_ImageRecognizer_LoadBalancerInterface);
+			ls_ls_MessageParserInterface = tail(ls_ls_MessageParserInterface);
+			ls_ls_VirusScanner_LoadBalancerInterface = tail(ls_ls_VirusScanner_LoadBalancerInterface);
+			ls_ls_VirusScannerInterface = tail(ls_ls_VirusScannerInterface);
+			ls_ls_LinkAnalyserInterface = tail(ls_ls_LinkAnalyserInterface);
+			ls_ls_LinkAnalyser_LoadBalancerInterface = tail(ls_ls_LinkAnalyser_LoadBalancerInterface);
+			ls_ls_DeploymentComponent = tail(ls_ls_DeploymentComponent);
+			if (ls_ls_DeploymentComponent != Nil) {
+				ls_DBInterface = head(ls_ls_DBInterface);
+				ls_HeaderAnalyser_LoadBalancerInterface = head(ls_ls_HeaderAnalyser_LoadBalancerInterface);
+				ls_NSFWDetectorInterface = head(ls_ls_NSFWDetectorInterface);
+				ls_AttachmentsManager_LoadBalancerInterface = head(ls_ls_AttachmentsManager_LoadBalancerInterface);
+				ls_ImageAnalyserInterface = head(ls_ls_ImageAnalyserInterface);
+				ls_ImageAnalyser_LoadBalancerInterface = head(ls_ls_ImageAnalyser_LoadBalancerInterface);
+				ls_MessageReceiverInterface = head(ls_ls_MessageReceiverInterface);
+				ls_TextAnalyserInterface = head(ls_ls_TextAnalyserInterface);
+				ls_MessageAnalyser_LoadBalancerInterface = head(ls_ls_MessageAnalyser_LoadBalancerInterface);
+				ls_MessageParser_LoadBalancerInterface = head(ls_ls_MessageParser_LoadBalancerInterface);
+				ls_SentimentAnalyser_LoadBalancerInterface = head(ls_ls_SentimentAnalyser_LoadBalancerInterface);
+				ls_TextAnalyser_LoadBalancerInterface = head(ls_ls_TextAnalyser_LoadBalancerInterface);
+				ls_SentimentAnalyserInterface = head(ls_ls_SentimentAnalyserInterface);
+				ls_ImageRecognizerInterface = head(ls_ls_ImageRecognizerInterface);
+				ls_AttachmentsManagerInterface = head(ls_ls_AttachmentsManagerInterface);
+				ls_NSFWDetector_LoadBalancerInterface = head(ls_ls_NSFWDetector_LoadBalancerInterface);
+				ls_HeaderAnalyserInterface = head(ls_ls_HeaderAnalyserInterface);
+				ls_MessageAnalyserInterface = head(ls_ls_MessageAnalyserInterface);
+				ls_ImageRecognizer_LoadBalancerInterface = head(ls_ls_ImageRecognizer_LoadBalancerInterface);
+				ls_MessageParserInterface = head(ls_ls_MessageParserInterface);
+				ls_VirusScanner_LoadBalancerInterface = head(ls_ls_VirusScanner_LoadBalancerInterface);
+				ls_VirusScannerInterface = head(ls_ls_VirusScannerInterface);
+				ls_LinkAnalyserInterface = head(ls_ls_LinkAnalyserInterface);
+				ls_LinkAnalyser_LoadBalancerInterface = head(ls_ls_LinkAnalyser_LoadBalancerInterface);
+			} else {
+				ls_DBInterface = Nil;
+				ls_HeaderAnalyser_LoadBalancerInterface = Nil;
+				ls_NSFWDetectorInterface = Nil;
+				ls_AttachmentsManager_LoadBalancerInterface = Nil;
+				ls_ImageAnalyserInterface = Nil;
+				ls_ImageAnalyser_LoadBalancerInterface = Nil;
+				ls_MessageReceiverInterface = Nil;
+				ls_TextAnalyserInterface = Nil;
+				ls_MessageAnalyser_LoadBalancerInterface = Nil;
+				ls_MessageParser_LoadBalancerInterface = Nil;
+				ls_SentimentAnalyser_LoadBalancerInterface = Nil;
+				ls_TextAnalyser_LoadBalancerInterface = Nil;
+				ls_SentimentAnalyserInterface = Nil;
+				ls_ImageRecognizerInterface = Nil;
+				ls_AttachmentsManagerInterface = Nil;
+				ls_NSFWDetector_LoadBalancerInterface = Nil;
+				ls_HeaderAnalyserInterface = Nil;
+				ls_MessageAnalyserInterface = Nil;
+				ls_ImageRecognizer_LoadBalancerInterface = Nil;
+				ls_MessageParserInterface = Nil;
+				ls_VirusScanner_LoadBalancerInterface = Nil;
+				ls_VirusScannerInterface = Nil;
+				ls_LinkAnalyserInterface = Nil;
+				ls_LinkAnalyser_LoadBalancerInterface = Nil;
+			}
+		}
+	}
+
+
+	Unit deploy_aux() {
+		DeploymentComponent c4_2xlarge_eu_20 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_20,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_21 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_21,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_22 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_22,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_23 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_23,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_1 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_1,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_0 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_0,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_3 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_3,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_2 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_2,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_5 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_5,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_4 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_4,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_7 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_7,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_6 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_6,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_9 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_9,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_8 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_8,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_11 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_11,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_10 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_10,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_13 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_13,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_12 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_12,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_15 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_15,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_14 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_14,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_17 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_17,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_16 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_16,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_19 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_19,ls_DeploymentComponent);
+		DeploymentComponent c4_2xlarge_eu_18 = cloudProvider.prelaunchInstanceNamed("c4_2xlarge_eu");
+		ls_DeploymentComponent = Cons(c4_2xlarge_eu_18,ls_DeploymentComponent);
+		[DC: c4_2xlarge_eu_8] NSFWDetectorInterface odefault___NSFWDetector_0_c4_2xlarge_eu_8 = new NSFWDetector();
+		ls_NSFWDetectorInterface = Cons(odefault___NSFWDetector_0_c4_2xlarge_eu_8, ls_NSFWDetectorInterface);
+		[DC: c4_2xlarge_eu_21] ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_eu_21 = new ImageRecognizer();
+		ls_ImageRecognizerInterface = Cons(odefault___ImageRecognizer_0_c4_2xlarge_eu_21, ls_ImageRecognizerInterface);
+		[DC: c4_2xlarge_eu_2] SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_eu_2 = new SentimentAnalyser();
+		ls_SentimentAnalyserInterface = Cons(odefault___SentimentAnalyser_0_c4_2xlarge_eu_2, ls_SentimentAnalyserInterface);
+		[DC: c4_2xlarge_eu_18] ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_eu_18 = new ImageRecognizer();
+		ls_ImageRecognizerInterface = Cons(odefault___ImageRecognizer_0_c4_2xlarge_eu_18, ls_ImageRecognizerInterface);
+		[DC: c4_2xlarge_eu_4] SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_eu_4 = new SentimentAnalyser();
+		ls_SentimentAnalyserInterface = Cons(odefault___SentimentAnalyser_0_c4_2xlarge_eu_4, ls_SentimentAnalyserInterface);
+		[DC: c4_2xlarge_eu_3] SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_eu_3 = new SentimentAnalyser();
+		ls_SentimentAnalyserInterface = Cons(odefault___SentimentAnalyser_0_c4_2xlarge_eu_3, ls_SentimentAnalyserInterface);
+		[DC: c4_2xlarge_eu_22] ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_eu_22 = new ImageRecognizer();
+		ls_ImageRecognizerInterface = Cons(odefault___ImageRecognizer_0_c4_2xlarge_eu_22, ls_ImageRecognizerInterface);
+		[DC: c4_2xlarge_eu_11] NSFWDetectorInterface odefault___NSFWDetector_0_c4_2xlarge_eu_11 = new NSFWDetector();
+		ls_NSFWDetectorInterface = Cons(odefault___NSFWDetector_0_c4_2xlarge_eu_11, ls_NSFWDetectorInterface);
+		[DC: c4_2xlarge_eu_19] ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_eu_19 = new ImageRecognizer();
+		ls_ImageRecognizerInterface = Cons(odefault___ImageRecognizer_0_c4_2xlarge_eu_19, ls_ImageRecognizerInterface);
+		[DC: c4_2xlarge_eu_7] NSFWDetectorInterface odefault___NSFWDetector_0_c4_2xlarge_eu_7 = new NSFWDetector();
+		ls_NSFWDetectorInterface = Cons(odefault___NSFWDetector_0_c4_2xlarge_eu_7, ls_NSFWDetectorInterface);
+		[DC: c4_2xlarge_eu_5] SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_eu_5 = new SentimentAnalyser();
+		ls_SentimentAnalyserInterface = Cons(odefault___SentimentAnalyser_0_c4_2xlarge_eu_5, ls_SentimentAnalyserInterface);
+		[DC: c4_2xlarge_eu_10] NSFWDetectorInterface odefault___NSFWDetector_0_c4_2xlarge_eu_10 = new NSFWDetector();
+		ls_NSFWDetectorInterface = Cons(odefault___NSFWDetector_0_c4_2xlarge_eu_10, ls_NSFWDetectorInterface);
+		[DC: c4_2xlarge_eu_23] ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_eu_23 = new ImageRecognizer();
+		ls_ImageRecognizerInterface = Cons(odefault___ImageRecognizer_0_c4_2xlarge_eu_23, ls_ImageRecognizerInterface);
+		[DC: c4_2xlarge_eu_0] SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_eu_0 = new SentimentAnalyser();
+		ls_SentimentAnalyserInterface = Cons(odefault___SentimentAnalyser_0_c4_2xlarge_eu_0, ls_SentimentAnalyserInterface);
+		[DC: c4_2xlarge_eu_6] NSFWDetectorInterface odefault___NSFWDetector_0_c4_2xlarge_eu_6 = new NSFWDetector();
+		ls_NSFWDetectorInterface = Cons(odefault___NSFWDetector_0_c4_2xlarge_eu_6, ls_NSFWDetectorInterface);
+		[DC: c4_2xlarge_eu_20] ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_eu_20 = new ImageRecognizer();
+		ls_ImageRecognizerInterface = Cons(odefault___ImageRecognizer_0_c4_2xlarge_eu_20, ls_ImageRecognizerInterface);
+		[DC: c4_2xlarge_eu_9] NSFWDetectorInterface odefault___NSFWDetector_0_c4_2xlarge_eu_9 = new NSFWDetector();
+		ls_NSFWDetectorInterface = Cons(odefault___NSFWDetector_0_c4_2xlarge_eu_9, ls_NSFWDetectorInterface);
+		[DC: c4_2xlarge_eu_1] SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_eu_1 = new SentimentAnalyser();
+		ls_SentimentAnalyserInterface = Cons(odefault___SentimentAnalyser_0_c4_2xlarge_eu_1, ls_SentimentAnalyserInterface);
+		[DC: c4_2xlarge_eu_0] MessageAnalyserInterface odefault___MessageAnalyser_0_c4_2xlarge_eu_0 = new MessageAnalyser(dbObj);
+		ls_MessageAnalyserInterface = Cons(odefault___MessageAnalyser_0_c4_2xlarge_eu_0, ls_MessageAnalyserInterface);
+		[DC: c4_2xlarge_eu_1] MessageAnalyserInterface odefault___MessageAnalyser_0_c4_2xlarge_eu_1 = new MessageAnalyser(dbObj);
+		ls_MessageAnalyserInterface = Cons(odefault___MessageAnalyser_0_c4_2xlarge_eu_1, ls_MessageAnalyserInterface);
+		[DC: c4_2xlarge_eu_7] TextAnalyserInterface odefault___TextAnalyser_0_c4_2xlarge_eu_7 = new TextAnalyser(sentimentAnalyser_LoadBalancerObj, messageAnalyser_LoadBalancerObj);
+		ls_TextAnalyserInterface = Cons(odefault___TextAnalyser_0_c4_2xlarge_eu_7, ls_TextAnalyserInterface);
+		[DC: c4_2xlarge_eu_4] ImageAnalyserInterface odefault___ImageAnalyser_0_c4_2xlarge_eu_4 = new ImageAnalyser(nsfwDetector_LoadBalancerObj, imageRecognizer_LoadBalancerObj, messageAnalyser_LoadBalancerObj);
+		ls_ImageAnalyserInterface = Cons(odefault___ImageAnalyser_0_c4_2xlarge_eu_4, ls_ImageAnalyserInterface);
+		[DC: c4_2xlarge_eu_5] ImageAnalyserInterface odefault___ImageAnalyser_0_c4_2xlarge_eu_5 = new ImageAnalyser(nsfwDetector_LoadBalancerObj, imageRecognizer_LoadBalancerObj, messageAnalyser_LoadBalancerObj);
+		ls_ImageAnalyserInterface = Cons(odefault___ImageAnalyser_0_c4_2xlarge_eu_5, ls_ImageAnalyserInterface);
+		[DC: c4_2xlarge_eu_6] TextAnalyserInterface odefault___TextAnalyser_0_c4_2xlarge_eu_6 = new TextAnalyser(sentimentAnalyser_LoadBalancerObj, messageAnalyser_LoadBalancerObj);
+		ls_TextAnalyserInterface = Cons(odefault___TextAnalyser_0_c4_2xlarge_eu_6, ls_TextAnalyserInterface);
+		[DC: c4_2xlarge_eu_12] VirusScannerInterface odefault___VirusScanner_0_c4_2xlarge_eu_12 = new VirusScanner(imageAnalyser_LoadBalancerObj, messageAnalyser_LoadBalancerObj);
+		ls_VirusScannerInterface = Cons(odefault___VirusScanner_0_c4_2xlarge_eu_12, ls_VirusScannerInterface);
+		[DC: c4_2xlarge_eu_15] VirusScannerInterface odefault___VirusScanner_0_c4_2xlarge_eu_15 = new VirusScanner(imageAnalyser_LoadBalancerObj, messageAnalyser_LoadBalancerObj);
+		ls_VirusScannerInterface = Cons(odefault___VirusScanner_0_c4_2xlarge_eu_15, ls_VirusScannerInterface);
+		[DC: c4_2xlarge_eu_14] VirusScannerInterface odefault___VirusScanner_0_c4_2xlarge_eu_14 = new VirusScanner(imageAnalyser_LoadBalancerObj, messageAnalyser_LoadBalancerObj);
+		ls_VirusScannerInterface = Cons(odefault___VirusScanner_0_c4_2xlarge_eu_14, ls_VirusScannerInterface);
+		[DC: c4_2xlarge_eu_17] VirusScannerInterface odefault___VirusScanner_0_c4_2xlarge_eu_17 = new VirusScanner(imageAnalyser_LoadBalancerObj, messageAnalyser_LoadBalancerObj);
+		ls_VirusScannerInterface = Cons(odefault___VirusScanner_0_c4_2xlarge_eu_17, ls_VirusScannerInterface);
+		[DC: c4_2xlarge_eu_16] VirusScannerInterface odefault___VirusScanner_0_c4_2xlarge_eu_16 = new VirusScanner(imageAnalyser_LoadBalancerObj, messageAnalyser_LoadBalancerObj);
+		ls_VirusScannerInterface = Cons(odefault___VirusScanner_0_c4_2xlarge_eu_16, ls_VirusScannerInterface);
+		[DC: c4_2xlarge_eu_13] VirusScannerInterface odefault___VirusScanner_0_c4_2xlarge_eu_13 = new VirusScanner(imageAnalyser_LoadBalancerObj, messageAnalyser_LoadBalancerObj);
+		ls_VirusScannerInterface = Cons(odefault___VirusScanner_0_c4_2xlarge_eu_13, ls_VirusScannerInterface);
+		[DC: c4_2xlarge_eu_2] AttachmentsManagerInterface odefault___AttachmentsManager_0_c4_2xlarge_eu_2 = new AttachmentsManager(virusScanner_LoadBalancerObj);
+		ls_AttachmentsManagerInterface = Cons(odefault___AttachmentsManager_0_c4_2xlarge_eu_2, ls_AttachmentsManagerInterface);
+		[DC: c4_2xlarge_eu_3] AttachmentsManagerInterface odefault___AttachmentsManager_0_c4_2xlarge_eu_3 = new AttachmentsManager(virusScanner_LoadBalancerObj);
+		ls_AttachmentsManagerInterface = Cons(odefault___AttachmentsManager_0_c4_2xlarge_eu_3, ls_AttachmentsManagerInterface);
+		nsfwDetector_LoadBalancerObj.connectInstance(odefault___NSFWDetector_0_c4_2xlarge_eu_7);
+		nsfwDetector_LoadBalancerObj.connectInstance(odefault___NSFWDetector_0_c4_2xlarge_eu_6);
+		nsfwDetector_LoadBalancerObj.connectInstance(odefault___NSFWDetector_0_c4_2xlarge_eu_9);
+		nsfwDetector_LoadBalancerObj.connectInstance(odefault___NSFWDetector_0_c4_2xlarge_eu_8);
+		nsfwDetector_LoadBalancerObj.connectInstance(odefault___NSFWDetector_0_c4_2xlarge_eu_11);
+		nsfwDetector_LoadBalancerObj.connectInstance(odefault___NSFWDetector_0_c4_2xlarge_eu_10);
+		sentimentAnalyser_LoadBalancerObj.connectInstance(odefault___SentimentAnalyser_0_c4_2xlarge_eu_1);
+		sentimentAnalyser_LoadBalancerObj.connectInstance(odefault___SentimentAnalyser_0_c4_2xlarge_eu_0);
+		sentimentAnalyser_LoadBalancerObj.connectInstance(odefault___SentimentAnalyser_0_c4_2xlarge_eu_3);
+		sentimentAnalyser_LoadBalancerObj.connectInstance(odefault___SentimentAnalyser_0_c4_2xlarge_eu_2);
+		sentimentAnalyser_LoadBalancerObj.connectInstance(odefault___SentimentAnalyser_0_c4_2xlarge_eu_5);
+		sentimentAnalyser_LoadBalancerObj.connectInstance(odefault___SentimentAnalyser_0_c4_2xlarge_eu_4);
+		imageRecognizer_LoadBalancerObj.connectInstance(odefault___ImageRecognizer_0_c4_2xlarge_eu_20);
+		imageRecognizer_LoadBalancerObj.connectInstance(odefault___ImageRecognizer_0_c4_2xlarge_eu_21);
+		imageRecognizer_LoadBalancerObj.connectInstance(odefault___ImageRecognizer_0_c4_2xlarge_eu_22);
+		imageRecognizer_LoadBalancerObj.connectInstance(odefault___ImageRecognizer_0_c4_2xlarge_eu_23);
+		imageRecognizer_LoadBalancerObj.connectInstance(odefault___ImageRecognizer_0_c4_2xlarge_eu_19);
+		imageRecognizer_LoadBalancerObj.connectInstance(odefault___ImageRecognizer_0_c4_2xlarge_eu_18);
+		messageAnalyser_LoadBalancerObj.connectInstance(odefault___MessageAnalyser_0_c4_2xlarge_eu_1);
+		messageAnalyser_LoadBalancerObj.connectInstance(odefault___MessageAnalyser_0_c4_2xlarge_eu_0);
+		imageAnalyser_LoadBalancerObj.connectInstance(odefault___ImageAnalyser_0_c4_2xlarge_eu_5);
+		imageAnalyser_LoadBalancerObj.connectInstance(odefault___ImageAnalyser_0_c4_2xlarge_eu_4);
+		textAnalyser_LoadBalancerObj.connectInstance(odefault___TextAnalyser_0_c4_2xlarge_eu_7);
+		textAnalyser_LoadBalancerObj.connectInstance(odefault___TextAnalyser_0_c4_2xlarge_eu_6);
+		virusScanner_LoadBalancerObj.connectInstance(odefault___VirusScanner_0_c4_2xlarge_eu_13);
+		virusScanner_LoadBalancerObj.connectInstance(odefault___VirusScanner_0_c4_2xlarge_eu_12);
+		virusScanner_LoadBalancerObj.connectInstance(odefault___VirusScanner_0_c4_2xlarge_eu_15);
+		virusScanner_LoadBalancerObj.connectInstance(odefault___VirusScanner_0_c4_2xlarge_eu_14);
+		virusScanner_LoadBalancerObj.connectInstance(odefault___VirusScanner_0_c4_2xlarge_eu_17);
+		virusScanner_LoadBalancerObj.connectInstance(odefault___VirusScanner_0_c4_2xlarge_eu_16);
+		attachmentsManager_LoadBalancerObj.connectInstance(odefault___AttachmentsManager_0_c4_2xlarge_eu_3);
+		attachmentsManager_LoadBalancerObj.connectInstance(odefault___AttachmentsManager_0_c4_2xlarge_eu_2);
+	}
+
+	Unit undeploy_aux() {
+		NSFWDetectorInterface odefault___NSFWDetector_0_c4_2xlarge_eu_8 = nth(ls_NSFWDetectorInterface,0);
+		ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_eu_21 = nth(ls_ImageRecognizerInterface,0);
+		SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_eu_2 = nth(ls_SentimentAnalyserInterface,0);
+		ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_eu_18 = nth(ls_ImageRecognizerInterface,1);
+		SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_eu_4 = nth(ls_SentimentAnalyserInterface,1);
+		SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_eu_3 = nth(ls_SentimentAnalyserInterface,2);
+		ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_eu_22 = nth(ls_ImageRecognizerInterface,2);
+		NSFWDetectorInterface odefault___NSFWDetector_0_c4_2xlarge_eu_11 = nth(ls_NSFWDetectorInterface,1);
+		ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_eu_19 = nth(ls_ImageRecognizerInterface,3);
+		NSFWDetectorInterface odefault___NSFWDetector_0_c4_2xlarge_eu_7 = nth(ls_NSFWDetectorInterface,2);
+		SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_eu_5 = nth(ls_SentimentAnalyserInterface,3);
+		NSFWDetectorInterface odefault___NSFWDetector_0_c4_2xlarge_eu_10 = nth(ls_NSFWDetectorInterface,3);
+		ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_eu_23 = nth(ls_ImageRecognizerInterface,4);
+		SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_eu_0 = nth(ls_SentimentAnalyserInterface,4);
+		NSFWDetectorInterface odefault___NSFWDetector_0_c4_2xlarge_eu_6 = nth(ls_NSFWDetectorInterface,4);
+		ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_eu_20 = nth(ls_ImageRecognizerInterface,5);
+		NSFWDetectorInterface odefault___NSFWDetector_0_c4_2xlarge_eu_9 = nth(ls_NSFWDetectorInterface,5);
+		SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_eu_1 = nth(ls_SentimentAnalyserInterface,5);
+		MessageAnalyserInterface odefault___MessageAnalyser_0_c4_2xlarge_eu_0 = nth(ls_MessageAnalyserInterface,0);
+		MessageAnalyserInterface odefault___MessageAnalyser_0_c4_2xlarge_eu_1 = nth(ls_MessageAnalyserInterface,1);
+		TextAnalyserInterface odefault___TextAnalyser_0_c4_2xlarge_eu_7 = nth(ls_TextAnalyserInterface,0);
+		ImageAnalyserInterface odefault___ImageAnalyser_0_c4_2xlarge_eu_4 = nth(ls_ImageAnalyserInterface,0);
+		ImageAnalyserInterface odefault___ImageAnalyser_0_c4_2xlarge_eu_5 = nth(ls_ImageAnalyserInterface,1);
+		TextAnalyserInterface odefault___TextAnalyser_0_c4_2xlarge_eu_6 = nth(ls_TextAnalyserInterface,1);
+		VirusScannerInterface odefault___VirusScanner_0_c4_2xlarge_eu_12 = nth(ls_VirusScannerInterface,0);
+		VirusScannerInterface odefault___VirusScanner_0_c4_2xlarge_eu_15 = nth(ls_VirusScannerInterface,1);
+		VirusScannerInterface odefault___VirusScanner_0_c4_2xlarge_eu_14 = nth(ls_VirusScannerInterface,2);
+		VirusScannerInterface odefault___VirusScanner_0_c4_2xlarge_eu_17 = nth(ls_VirusScannerInterface,3);
+		VirusScannerInterface odefault___VirusScanner_0_c4_2xlarge_eu_16 = nth(ls_VirusScannerInterface,4);
+		VirusScannerInterface odefault___VirusScanner_0_c4_2xlarge_eu_13 = nth(ls_VirusScannerInterface,5);
+		AttachmentsManagerInterface odefault___AttachmentsManager_0_c4_2xlarge_eu_2 = nth(ls_AttachmentsManagerInterface,0);
+		AttachmentsManagerInterface odefault___AttachmentsManager_0_c4_2xlarge_eu_3 = nth(ls_AttachmentsManagerInterface,1);
+		nsfwDetector_LoadBalancerObj.disconnectInstance();
+		nsfwDetector_LoadBalancerObj.disconnectInstance();
+		nsfwDetector_LoadBalancerObj.disconnectInstance();
+		nsfwDetector_LoadBalancerObj.disconnectInstance();
+		nsfwDetector_LoadBalancerObj.disconnectInstance();
+		nsfwDetector_LoadBalancerObj.disconnectInstance();
+		sentimentAnalyser_LoadBalancerObj.disconnectInstance();
+		sentimentAnalyser_LoadBalancerObj.disconnectInstance();
+		sentimentAnalyser_LoadBalancerObj.disconnectInstance();
+		sentimentAnalyser_LoadBalancerObj.disconnectInstance();
+		sentimentAnalyser_LoadBalancerObj.disconnectInstance();
+		sentimentAnalyser_LoadBalancerObj.disconnectInstance();
+		imageRecognizer_LoadBalancerObj.disconnectInstance();
+		imageRecognizer_LoadBalancerObj.disconnectInstance();
+		imageRecognizer_LoadBalancerObj.disconnectInstance();
+		imageRecognizer_LoadBalancerObj.disconnectInstance();
+		imageRecognizer_LoadBalancerObj.disconnectInstance();
+		imageRecognizer_LoadBalancerObj.disconnectInstance();
+		messageAnalyser_LoadBalancerObj.disconnectInstance();
+		messageAnalyser_LoadBalancerObj.disconnectInstance();
+		imageAnalyser_LoadBalancerObj.disconnectInstance();
+		imageAnalyser_LoadBalancerObj.disconnectInstance();
+		textAnalyser_LoadBalancerObj.disconnectInstance();
+		textAnalyser_LoadBalancerObj.disconnectInstance();
+		virusScanner_LoadBalancerObj.disconnectInstance();
+		virusScanner_LoadBalancerObj.disconnectInstance();
+		virusScanner_LoadBalancerObj.disconnectInstance();
+		virusScanner_LoadBalancerObj.disconnectInstance();
+		virusScanner_LoadBalancerObj.disconnectInstance();
+		virusScanner_LoadBalancerObj.disconnectInstance();
+		attachmentsManager_LoadBalancerObj.disconnectInstance();
+		attachmentsManager_LoadBalancerObj.disconnectInstance();
+		while ( !isEmpty(ls_DeploymentComponent) ) {
+			cloudProvider.shutdownInstance(head(ls_DeploymentComponent));
+			ls_DeploymentComponent = tail(ls_DeploymentComponent);
+		}
+	}
+}
+

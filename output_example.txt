@@ -1,0 +1,415 @@
+Start m_IacopoTest
+Initial Deployment Configuration set up
+
+
+Scale1 Configuration set up
+
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.217.0>: 
+Results of message "795080957" analysis:
+	Results of HeaderAnalysis (Message1_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.172.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.235.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.226.0> on: 
+ 		Message1_MessageHeader
+ 		Message1_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message1_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.217.0>
+		SentimentAnalysis result of: Message1_MessageBody_block1 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.386.0>
+	Image (Message1_Attachment0) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.208.0>
+	Image (Message1_Attachment1) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+	Image (Message1_Attachment3) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.208.0>
+	VirusFound from VirusScanner in attachment: Message1_Attachment2 by VirusScanner in ABS.DC_DeploymentComponent:<0.377.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.395.0>: 
+Results of message "592855109" analysis:
+	Results of HeaderAnalysis (Message3_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.172.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.235.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.404.0> on: 
+ 		Message3_MessageHeader
+ 		Message3_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message3_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.395.0>
+		SentimentAnalysis result of: Message3_MessageBody_block1 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+	Image (Message3_Attachment0) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+	Results of ImageAnalysis (Message3_Attachment1) - Category Recognized: 1 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.208.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.208.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.395.0>: 
+Results of message "746035925" analysis:
+	Results of HeaderAnalysis (Message2_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.172.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.235.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.226.0> on: 
+ 		Message2_MessageHeader
+ 		Message2_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message2_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.217.0>
+		SentimentAnalysis result of: Message2_MessageBody_block1 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.386.0>
+		SentimentAnalysis result of: Message2_MessageBody_block2 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+		SentimentAnalysis result of: Message2_MessageBody_block3 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.386.0>
+	Results of ImageAnalysis (Message2_Attachment0) - Category Recognized: 1 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.404.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+	Results of ImageAnalysis (Message2_Attachment1) - Category Recognized: 1 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.422.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+	Results of ImageAnalysis (Message2_Attachment2) - Category Recognized: 1 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.431.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.208.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.395.0>: 
+Results of message "814222206" analysis:
+	Results of HeaderAnalysis (Message8_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.172.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.235.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.226.0> on: 
+ 		Message8_MessageHeader
+ 		Message8_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message8_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.217.0>
+		SentimentAnalysis result of: Message8_MessageBody_block1 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.395.0>
+	Results of ImageAnalysis (Message8_Attachment0) - Category Recognized: 2 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.431.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.208.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.217.0>: 
+Results of message "971713428" analysis:
+	Results of HeaderAnalysis (Message10_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.172.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.235.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.226.0> on: 
+ 		Message10_MessageHeader
+ 		Message10_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message10_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+		SentimentAnalysis result of: Message10_MessageBody_block1 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+	VirusFound from VirusScanner in attachment: Message10_Attachment0 by VirusScanner in ABS.DC_DeploymentComponent:<0.458.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.395.0>: 
+Results of message "292816617" analysis:
+	Results of HeaderAnalysis (Message5_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.172.0>
+	
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.404.0> on: 
+ 		Message5_MessageHeader
+ 		Message5_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message5_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.395.0>
+	Results of ImageAnalysis (Message5_Attachment1) - Category Recognized: 2 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.208.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.208.0>
+	Results of ImageAnalysis (Message5_Attachment2) - Category Recognized: 2 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.422.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+	Results of ImageAnalysis (Message5_Attachment3) - Category Recognized: 2 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.404.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+	VirusFound from VirusScanner in attachment: Message5_Attachment0 by VirusScanner in ABS.DC_DeploymentComponent:<0.458.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.395.0>: 
+Results of message "508029308" analysis:
+	Results of HeaderAnalysis (Message6_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.172.0>
+	
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.404.0> on: 
+ 		Message6_MessageHeader
+ 		Message6_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message6_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.386.0>
+		SentimentAnalysis result of: Message6_MessageBody_block1 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.217.0>
+	Results of ImageAnalysis (Message6_Attachment0) - Category Recognized: 4 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.208.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.208.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.217.0>: 
+Results of message "562827236" analysis:
+	Results of HeaderAnalysis (Message9_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.172.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.235.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.226.0> on: 
+ 		Message9_MessageHeader
+ 		Message9_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message9_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.217.0>
+		SentimentAnalysis result of: Message9_MessageBody_block1 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.395.0>
+		SentimentAnalysis result of: Message9_MessageBody_block2 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.395.0>
+		SentimentAnalysis result of: Message9_MessageBody_block3 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.217.0>
+	Image (Message9_Attachment0) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.208.0>
+	Image (Message9_Attachment1) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+	Image (Message9_Attachment2) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.208.0>
+	Image (Message9_Attachment3) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.217.0>: 
+Results of message "655519083" analysis:
+	Results of HeaderAnalysis (Message7_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.172.0>
+	
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.404.0> on: 
+ 		Message7_MessageHeader
+ 		Message7_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message7_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.395.0>: 
+Results of message "937908120" analysis:
+	Results of HeaderAnalysis (Message4_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.172.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.235.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.404.0> on: 
+ 		Message4_MessageHeader
+ 		Message4_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message4_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.386.0>
+		SentimentAnalysis result of: Message4_MessageBody_block1 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.386.0>
+		SentimentAnalysis result of: Message4_MessageBody_block2 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.395.0>
+		SentimentAnalysis result of: Message4_MessageBody_block3 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+	Results of ImageAnalysis (Message4_Attachment0) - Category Recognized: 4 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.404.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+	Results of ImageAnalysis (Message4_Attachment1) - Category Recognized: 4 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.422.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+	Results of ImageAnalysis (Message4_Attachment2) - Category Recognized: 4 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.431.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.208.0>
+
+
+
+Scale2 Configuration set up
+
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.395.0>: 
+Results of message "127186598" analysis:
+	Results of HeaderAnalysis (Message11_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.172.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.235.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.226.0> on: 
+ 		Message11_MessageHeader
+ 		Message11_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message11_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.217.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.1620.0>: 
+Results of message "85629779" analysis:
+	Results of HeaderAnalysis (Message19_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.1665.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.1674.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.404.0> on: 
+ 		Message19_MessageHeader
+ 		Message19_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message19_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.1629.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.1629.0>: 
+Results of message "981775693" analysis:
+	Results of HeaderAnalysis (Message15_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.172.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.235.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.1692.0> on: 
+ 		Message15_MessageHeader
+ 		Message15_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message15_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.386.0>
+		SentimentAnalysis result of: Message15_MessageBody_block1 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.1620.0>: 
+Results of message "922020901" analysis:
+	Results of HeaderAnalysis (Message13_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.1665.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.1674.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.1701.0> on: 
+ 		Message13_MessageHeader
+ 		Message13_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message13_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+	Image (Message13_Attachment1) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+	Image (Message13_Attachment2) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.208.0>
+	Results of ImageAnalysis (Message13_Attachment0) - Category Recognized: 1 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.1656.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.208.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.1620.0>: 
+Results of message "409287613" analysis:
+	Results of HeaderAnalysis (Message17_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.172.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.235.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.226.0> on: 
+ 		Message17_MessageHeader
+ 		Message17_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message17_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.1620.0>
+	Image (Message17_Attachment1) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.1683.0>
+	Image (Message17_Attachment2) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.208.0>
+	VirusFound from VirusScanner in attachment: Message17_Attachment0 by VirusScanner in ABS.DC_DeploymentComponent:<0.368.0>
+	VirusFound from VirusScanner in attachment: Message17_Attachment3 by VirusScanner in ABS.DC_DeploymentComponent:<0.1602.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.217.0>: 
+Results of message "630076193" analysis:
+	Results of HeaderAnalysis (Message16_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.1665.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.1674.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.1701.0> on: 
+ 		Message16_MessageHeader
+ 		Message16_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message16_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.1647.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.1629.0>: 
+Results of message "989702928" analysis:
+	Results of HeaderAnalysis (Message14_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.172.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.235.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.1692.0> on: 
+ 		Message14_MessageHeader
+ 		Message14_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message14_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.395.0>
+	Image (Message14_Attachment0) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.1656.0>
+	Results of ImageAnalysis (Message14_Attachment1) - Category Recognized: 1 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.1674.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.1683.0>
+	Results of ImageAnalysis (Message14_Attachment2) - Category Recognized: 5 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.431.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.1683.0>
+	Results of ImageAnalysis (Message14_Attachment3) - Category Recognized: 7 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.404.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.395.0>: 
+Results of message "317566095" analysis:
+	Results of HeaderAnalysis (Message12_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.1665.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.1674.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.404.0> on: 
+ 		Message12_MessageHeader
+ 		Message12_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message12_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.386.0>
+		SentimentAnalysis result of: Message12_MessageBody_block1 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.1638.0>
+	Results of ImageAnalysis (Message12_Attachment0) - Category Recognized: 5 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.208.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.208.0>
+	Results of ImageAnalysis (Message12_Attachment1) - Category Recognized: 5 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.422.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.1656.0>
+	Results of ImageAnalysis (Message12_Attachment2) - Category Recognized: 5 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.404.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.1620.0>: 
+Results of message "848387624" analysis:
+	Results of HeaderAnalysis (Message20_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.1665.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.1674.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.404.0> on: 
+ 		Message20_MessageHeader
+ 		Message20_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message20_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.1620.0>
+		SentimentAnalysis result of: Message20_MessageBody_block1 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.1629.0>
+		SentimentAnalysis result of: Message20_MessageBody_block2 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.1638.0>
+		SentimentAnalysis result of: Message20_MessageBody_block3 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.1647.0>
+	Image (Message20_Attachment0) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+	Results of ImageAnalysis (Message20_Attachment1) - Category Recognized: 1 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.1683.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.208.0>
+	Results of ImageAnalysis (Message20_Attachment2) - Category Recognized: 7 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.208.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+	Results of ImageAnalysis (Message20_Attachment3) - Category Recognized: 1 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.1665.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.1656.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.1629.0>: 
+Results of message "823488059" analysis:
+	Results of HeaderAnalysis (Message18_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.172.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.235.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.226.0> on: 
+ 		Message18_MessageHeader
+ 		Message18_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message18_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.217.0>
+		SentimentAnalysis result of: Message18_MessageBody_block1 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.395.0>
+	Image (Message18_Attachment0) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.1656.0>
+	Image (Message18_Attachment2) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.1683.0>
+	VirusFound from VirusScanner in attachment: Message18_Attachment1 by VirusScanner in ABS.DC_DeploymentComponent:<0.1593.0>
+
+
+
+Scale3 Configuration set up
+
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.2824.0>: 
+Results of message "96854871" analysis:
+	Results of HeaderAnalysis (Message24_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.172.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.235.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.2878.0> on: 
+ 		Message24_MessageHeader
+ 		Message24_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message24_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.1620.0>
+		SentimentAnalysis result of: Message24_MessageBody_block1 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.1647.0>
+		SentimentAnalysis result of: Message24_MessageBody_block2 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+		SentimentAnalysis result of: Message24_MessageBody_block3 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.1629.0>
+	Results of ImageAnalysis (Message24_Attachment1) - Category Recognized: 2 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.1674.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.208.0>
+	VirusFound from VirusScanner in attachment: Message24_Attachment0 by VirusScanner in ABS.DC_DeploymentComponent:<0.2941.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.2833.0>: 
+Results of message "600204835" analysis:
+	Results of HeaderAnalysis (Message21_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.172.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.235.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.1692.0> on: 
+ 		Message21_MessageHeader
+ 		Message21_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message21_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.217.0>
+		SentimentAnalysis result of: Message21_MessageBody_block1 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.395.0>
+		SentimentAnalysis result of: Message21_MessageBody_block2 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.1629.0>
+	Results of ImageAnalysis (Message21_Attachment0) - Category Recognized: 7 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.422.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.1656.0>
+	Results of ImageAnalysis (Message21_Attachment1) - Category Recognized: 2 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.1656.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.2860.0>
+	Results of ImageAnalysis (Message21_Attachment2) - Category Recognized: 2 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.1665.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.2869.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.2824.0>: 
+Results of message "793512295" analysis:
+	Results of HeaderAnalysis (Message25_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.1665.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.1674.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.2887.0> on: 
+ 		Message25_MessageHeader
+ 		Message25_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message25_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.2869.0>
+	VirusFound from VirusScanner in attachment: Message25_Attachment0 by VirusScanner in ABS.DC_DeploymentComponent:<0.1593.0>
+	VirusFound from VirusScanner in attachment: Message25_Attachment1 by VirusScanner in ABS.DC_DeploymentComponent:<0.377.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.2833.0>: 
+Results of message "536170970" analysis:
+	Results of HeaderAnalysis (Message27_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.172.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.235.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.226.0> on: 
+ 		Message27_MessageHeader
+ 		Message27_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message27_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.217.0>
+	Results of ImageAnalysis (Message27_Attachment1) - Category Recognized: 8 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.208.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+	VirusFound from VirusScanner in attachment: Message27_Attachment0 by VirusScanner in ABS.DC_DeploymentComponent:<0.1611.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.217.0>: 
+Results of message "761629531" analysis:
+	Results of HeaderAnalysis (Message26_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.1665.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.1674.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.404.0> on: 
+ 		Message26_MessageHeader
+ 		Message26_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message26_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.2851.0>
+	Image (Message26_Attachment0) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.208.0>
+	Image (Message26_Attachment1) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.1656.0>
+	Image (Message26_Attachment2) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.1683.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.395.0>: 
+Results of message "87919651" analysis:
+	Results of HeaderAnalysis (Message30_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.172.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.235.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.1692.0> on: 
+ 		Message30_MessageHeader
+ 		Message30_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message30_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.2824.0>
+		SentimentAnalysis result of: Message30_MessageBody_block1 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.2860.0>
+		SentimentAnalysis result of: Message30_MessageBody_block2 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.386.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.1629.0>: 
+Results of message "452513093" analysis:
+	Results of HeaderAnalysis (Message29_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.172.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.235.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.2878.0> on: 
+ 		Message29_MessageHeader
+ 		Message29_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message29_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.2842.0>
+		SentimentAnalysis result of: Message29_MessageBody_block1 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.395.0>
+		SentimentAnalysis result of: Message29_MessageBody_block2 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.1638.0>
+		SentimentAnalysis result of: Message29_MessageBody_block3 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.2824.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.217.0>: 
+Results of message "240489714" analysis:
+	Results of HeaderAnalysis (Message28_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.1665.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.1674.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.2887.0> on: 
+ 		Message28_MessageHeader
+ 		Message28_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message28_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.1638.0>
+		SentimentAnalysis result of: Message28_MessageBody_block1 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.2833.0>
+	Image (Message28_Attachment0) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.2869.0>
+	Image (Message28_Attachment2) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.2860.0>
+	Results of ImageAnalysis (Message28_Attachment1) - Category Recognized: 2 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.1683.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.2824.0>: 
+Results of message "891353131" analysis:
+	Results of HeaderAnalysis (Message22_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.1665.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.1674.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.1701.0> on: 
+ 		Message22_MessageHeader
+ 		Message22_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message22_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.386.0>
+		SentimentAnalysis result of: Message22_MessageBody_block1 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.413.0>
+		SentimentAnalysis result of: Message22_MessageBody_block2 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.2833.0>
+	Image (Message22_Attachment2) not safe for work by ImageAnalyser in ABS.DC_DeploymentComponent:<0.1656.0>
+	Results of ImageAnalysis (Message22_Attachment1) - Category Recognized: 7 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.431.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.1683.0>
+	VirusFound from VirusScanner in attachment: Message22_Attachment0 by VirusScanner in ABS.DC_DeploymentComponent:<0.368.0>
+
+MessageAnalyser in ABS.DC_DeploymentComponent:<0.395.0>: 
+Results of message "547144173" analysis:
+	Results of HeaderAnalysis (Message23_NetworkHeaders) by HeaderAnalyser in ABS.DC_DeploymentComponent:<0.1665.0>
+	Results of LinkAnalysis by LinkAnalyser in ABS.DC_DeploymentComponent:<0.1674.0>
+	Results of TextAnalysis by TextAnalyser in ABS.DC_DeploymentComponent:<0.1701.0> on: 
+ 		Message23_MessageHeader
+ 		Message23_MessageBody
+ 		SentimentAnalysis return:
+		SentimentAnalysis result of: Message23_MessageBody_block0 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.1620.0>
+		SentimentAnalysis result of: Message23_MessageBody_block1 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.1647.0>
+		SentimentAnalysis result of: Message23_MessageBody_block2 by SentimentAnalyser in ABS.DC_DeploymentComponent:<0.2842.0>
+	Results of ImageAnalysis (Message23_Attachment0) - Category Recognized: 8 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.404.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.1683.0>
+	Results of ImageAnalysis (Message23_Attachment1) - Category Recognized: 8 by ImageRecognizer in ABS.DC_DeploymentComponent:<0.422.0> by ImageAnalyser in ABS.DC_DeploymentComponent:<0.2860.0>
