@@ -852,9 +852,9 @@ import * from Scale3;
 	}
 */
 
-
+/*
 [ SmartDeploy : "{\"id\":\"Scale3\",\"specification\":\"DB=0 and MessageReceiver = 0 and MessageParser = 0 and HeaderAnalyser = 0 and LinkAnalyser = 0 and TextAnalyser = 2 and SentimentAnalyser = 6 and AttachmentsManager = 2 and VirusScanner = 6 and ImageAnalyser = 2 and NSFWDetector = 6 and ImageRecognizer = 6 and MessageAnalyser = 2 and MessageParser_LoadBalancer = 0 and HeaderAnalyser_LoadBalancer = 0 and LinkAnalyser_LoadBalancer = 0 and TextAnalyser_LoadBalancer = 0 and SentimentAnalyser_LoadBalancer = 0 and AttachmentsManager_LoadBalancer = 0 and VirusScanner_LoadBalancer = 0 and ImageAnalyser_LoadBalancer = 0 and NSFWDetector_LoadBalancer = 0 and ImageRecognizer_LoadBalancer = 0 and MessageAnalyser_LoadBalancer = 0\",\"DC\":[], \"obj\":[ {\"name\":\"messageParser_LoadBalancerObj\",\"interface\":\"MessageParser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"MessageParser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"MessageParserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"MessageParserInterface\"}}]}, {\"name\":\"headerAnalyser_LoadBalancerObj\",\"interface\":\"HeaderAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"HeaderAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"HeaderAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"HeaderAnalyserInterface\"}}]}, {\"name\":\"linkAnalyser_LoadBalancerObj\",\"interface\":\"LinkAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"LinkAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"LinkAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"LinkAnalyserInterface\"}}]}, {\"name\":\"textAnalyser_LoadBalancerObj\",\"interface\":\"TextAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"TextAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"TextAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"TextAnalyserInterface\"}}]}, {\"name\":\"sentimentAnalyser_LoadBalancerObj\",\"interface\":\"SentimentAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"SentimentAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"SentimentAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"SentimentAnalyserInterface\"}}]}, {\"name\":\"attachmentsManager_LoadBalancerObj\",\"interface\":\"AttachmentsManager_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"AttachmentsManager_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"AttachmentsManagerInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"AttachmentsManagerInterface\"}}]}, {\"name\":\"virusScanner_LoadBalancerObj\",\"interface\":\"VirusScanner_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"VirusScanner_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"VirusScannerInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"VirusScannerInterface\"}}]}, {\"name\":\"imageAnalyser_LoadBalancerObj\",\"interface\":\"ImageAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"ImageAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"ImageAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"ImageAnalyserInterface\"}}]}, {\"name\":\"nsfwDetector_LoadBalancerObj\",\"interface\":\"NSFWDetector_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"NSFWDetector_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"NSFWDetectorInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"NSFWDetectorInterface\"}}]}, {\"name\":\"imageRecognizer_LoadBalancerObj\",\"interface\":\"ImageRecognizer_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"ImageRecognizer_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"ImageRecognizerInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"ImageRecognizerInterface\"}}]}, {\"name\":\"messageAnalyser_LoadBalancerObj\",\"interface\":\"MessageAnalyser_LoadBalancerInterface\",\"provides\":[{\"ports\":[\"MessageAnalyser_LoadBalancerInterface\"],\"num\":-1}],\"methods\" : [{\"add\" : { \"name\": \"connectInstance\", \"param_type\": \"MessageAnalyserInterface\" },\"remove\" : { \"name\": \"disconnectInstance\", \"return_type\" : \"MessageAnalyserInterface\"}}]}, {\"name\":\"dbObj\",\"interface\":\"DBInterface\",\"provides\":[{\"ports\":[\"DBInterface\"],\"num\":-1}],\"methods\" : []}], \"cloud_provider_DC_availability\":{ \"c4_large\":40, \"c4_xlarge\":40, \"c4_2xlarge\":40 }, \"bind preferences\":[\"((forall ?x of type MessageParser in '.*' :  forall ?y of type messageParser_LoadBalancerObj in '.*' : ?x used by ?y) and (forall ?x of type HeaderAnalyser in '.*' :  forall ?y of type headerAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and (forall ?x of type LinkAnalyser in '.*' :  forall ?y of type linkAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and (forall ?x of type TextAnalyser in '.*' :  forall ?y of type textAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type SentimentAnalyser in '.*' :  forall ?y of type sentimentAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type AttachmentsManager in '.*' :  forall ?y of type attachmentsManager_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type VirusScanner in '.*' :  forall ?y of type virusScanner_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type ImageAnalyser in '.*' :  forall ?y of type imageAnalyser_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type NSFWDetector in '.*' :  forall ?y of type nsfwDetector_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type ImageRecognizer in '.*' :  forall ?y of type imageRecognizer_LoadBalancerObj in '.*' : ?x used by ?y) and  (forall ?x of type MessageAnalyser in '.*' :  forall ?y of type messageAnalyser_LoadBalancerObj in '.*' : ?x used by ?y))\"]}"]
-
+*/
 
 
 
@@ -2581,44 +2581,55 @@ class WrapperScale(Scale1 s1, Scale2 s2, Scale3 s3) implements WrapperScaleInter
 
 	List<DeploymentComponent> getDeploymentComponent(){
 		List<DeploymentComponent> res = Nil;
-		if(s1 != null){
-			res = s1.getDeploymentComponent();
+		if(s3 != null){
+			List<DeploymentComponent> dcListS3 = s3.getDeploymentComponent();
+			List<DeploymentComponent> dcListS2 = s2.getDeploymentComponent();
+			List<DeploymentComponent> dcListS1 = s1.getDeploymentComponent();
+			List<DeploymentComponent> dcListS3S2 = concatenate(dcListS3, dcListS2);
+			res = concatenate(dcListS3S2, dcListS1);
 		}
 		else{
 			if(s2 != null){
-				res = s2.getDeploymentComponent();
+				List<DeploymentComponent> dcListS2 = s2.getDeploymentComponent();
+				List<DeploymentComponent> dcListS1 = s1.getDeploymentComponent();
+				res = concatenate(dcListS2, dcListS1);
 			}
 			else{
-				res = s3.getDeploymentComponent();
+				res = s1.getDeploymentComponent();
 			}
 		}
 		return res;
 	}
 
 	Unit deploy(){
-		if(s1 != null){
+		if(s3 != null){
 			s1.deploy();
+			s2.deploy();
+			s3.deploy();
 		}
 		else{
 			if(s2 != null){
+				s1.deploy();
 				s2.deploy();
 			}
 			else{
-				s3.deploy();
+				s1.deploy();
 			}
 		}
 	}
 
 	Unit undeploy(){
-		if(s1 != null){
+		if(s3 != null){
 			s1.undeploy();
+			s2.undeploy();
+			s3.undeploy();
 		}
 		else{
 			if(s2 != null){
 				s2.undeploy();
 			}
 			else{
-				s3.undeploy();
+				s1.undeploy();
 			}
 		}
 	}
@@ -2827,12 +2838,15 @@ class SetUpSystem() implements SetUpSystemInterface{
 		WrapperScaleInterface wrapperS1 = new WrapperScale(s1, null, null);
 		monitor.insertScalingPolicy (5, wrapperS1, "Scale1");
 
+		Scale1 s1_forS2 = new Scale1(cp, head(messageParser_LoadBalancerList), head(headerAnalyser_LoadBalancerList), head(linkAnalyser_LoadBalancerList), head(textAnalyser_LoadBalancerList), head(sentimentAnalyser_LoadBalancerList), head(attachmentsManager_LoadBalancerList), head(virusScanner_LoadBalancerList), head(imageAnalyser_LoadBalancerList), head(nsfwDetector_LoadBalancerList), head(imageRecognizer_LoadBalancerList), head(messageAnalyser_LoadBalancerList), head(db_List));
 		Scale2 s2 = new Scale2(cp, head(messageParser_LoadBalancerList), head(headerAnalyser_LoadBalancerList), head(linkAnalyser_LoadBalancerList), head(textAnalyser_LoadBalancerList), head(sentimentAnalyser_LoadBalancerList), head(attachmentsManager_LoadBalancerList), head(virusScanner_LoadBalancerList), head(imageAnalyser_LoadBalancerList), head(nsfwDetector_LoadBalancerList), head(imageRecognizer_LoadBalancerList), head(messageAnalyser_LoadBalancerList), head(db_List));
-		WrapperScaleInterface wrapperS2 = new WrapperScale(null, s2, null);
+		WrapperScaleInterface wrapperS2 = new WrapperScale(s1_forS2, s2, null);
 		monitor.insertScalingPolicy (10, wrapperS2, "Scale2");
 
+		Scale1 s1_forS3 = new Scale1(cp, head(messageParser_LoadBalancerList), head(headerAnalyser_LoadBalancerList), head(linkAnalyser_LoadBalancerList), head(textAnalyser_LoadBalancerList), head(sentimentAnalyser_LoadBalancerList), head(attachmentsManager_LoadBalancerList), head(virusScanner_LoadBalancerList), head(imageAnalyser_LoadBalancerList), head(nsfwDetector_LoadBalancerList), head(imageRecognizer_LoadBalancerList), head(messageAnalyser_LoadBalancerList), head(db_List));
+		Scale2 s2_forS3 = new Scale2(cp, head(messageParser_LoadBalancerList), head(headerAnalyser_LoadBalancerList), head(linkAnalyser_LoadBalancerList), head(textAnalyser_LoadBalancerList), head(sentimentAnalyser_LoadBalancerList), head(attachmentsManager_LoadBalancerList), head(virusScanner_LoadBalancerList), head(imageAnalyser_LoadBalancerList), head(nsfwDetector_LoadBalancerList), head(imageRecognizer_LoadBalancerList), head(messageAnalyser_LoadBalancerList), head(db_List));
 		Scale3 s3 = new Scale3(cp, head(messageParser_LoadBalancerList), head(headerAnalyser_LoadBalancerList), head(linkAnalyser_LoadBalancerList), head(textAnalyser_LoadBalancerList), head(sentimentAnalyser_LoadBalancerList), head(attachmentsManager_LoadBalancerList), head(virusScanner_LoadBalancerList), head(imageAnalyser_LoadBalancerList), head(nsfwDetector_LoadBalancerList), head(imageRecognizer_LoadBalancerList), head(messageAnalyser_LoadBalancerList), head(db_List));
-		WrapperScaleInterface wrapperS3 = new WrapperScale(null, null, s3);
+		WrapperScaleInterface wrapperS3 = new WrapperScale(s1_forS3, s2_forS3, s3);
 		monitor.insertScalingPolicy (15, wrapperS3, "Scale3");
 
 		//create the external callable entrypoint
