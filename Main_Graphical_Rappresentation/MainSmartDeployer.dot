@@ -37,8 +37,8 @@ comp_3 [shape=box,label=<
 <tr><td port="req_DBInterface">DBInterface</td></tr>
 <tr><td port="req_HeaderAnalyser_LoadBalancerInterface">HeaderAnalyser_LoadBalancerInterface</td></tr>
 <tr><td port="req_MessageAnalyser_LoadBalancerInterface">MessageAnalyser_LoadBalancerInterface</td></tr>
-<tr><td port="req_AttachmentsManager_LoadBalancerInterface">AttachmentsManager_LoadBalancerInterface</td></tr>
 <tr><td port="req_TextAnalyser_LoadBalancerInterface">TextAnalyser_LoadBalancerInterface</td></tr>
+<tr><td port="req_VirusScanner_LoadBalancerInterface">VirusScanner_LoadBalancerInterface</td></tr>
 <tr><td port="req_LinkAnalyser_LoadBalancerInterface">LinkAnalyser_LoadBalancerInterface</td></tr>
 </table></td></tr>
 </table>
@@ -242,8 +242,8 @@ comp_21 [shape=box,label=<
 <tr><td port="prov_VirusScannerInterface">VirusScannerInterface</td></tr>
 </table></td></tr>
 <tr><td><table border="0" cellborder="1" cellspacing="0" bgcolor="red">
+<tr><td port="req_AttachmentsManager_LoadBalancerInterface">AttachmentsManager_LoadBalancerInterface</td></tr>
 <tr><td port="req_MessageAnalyser_LoadBalancerInterface">MessageAnalyser_LoadBalancerInterface</td></tr>
-<tr><td port="req_ImageAnalyser_LoadBalancerInterface">ImageAnalyser_LoadBalancerInterface</td></tr>
 </table></td></tr>
 </table>
 >];
@@ -286,7 +286,7 @@ comp_2 [shape=box,label=<
 <tr><td port="prov_AttachmentsManagerInterface">AttachmentsManagerInterface</td></tr>
 </table></td></tr>
 <tr><td><table border="0" cellborder="1" cellspacing="0" bgcolor="red">
-<tr><td port="req_VirusScanner_LoadBalancerInterface">VirusScanner_LoadBalancerInterface</td></tr>
+<tr><td port="req_ImageAnalyser_LoadBalancerInterface">ImageAnalyser_LoadBalancerInterface</td></tr>
 </table></td></tr>
 </table>
 >];
@@ -298,8 +298,8 @@ comp_4:prov_LinkAnalyser_LoadBalancerInterface -> comp_3:req_LinkAnalyser_LoadBa
 comp_5:prov_TextAnalyser_LoadBalancerInterface -> comp_3:req_TextAnalyser_LoadBalancerInterface
 comp_6:prov_SentimentAnalyser_LoadBalancerInterface -> comp_20:req_SentimentAnalyser_LoadBalancerInterface
 comp_7:prov_NSFWDetector_LoadBalancerInterface -> comp_17:req_NSFWDetector_LoadBalancerInterface
-comp_9:prov_ImageAnalyser_LoadBalancerInterface -> comp_21:req_ImageAnalyser_LoadBalancerInterface
-comp_10:prov_AttachmentsManager_LoadBalancerInterface -> comp_3:req_AttachmentsManager_LoadBalancerInterface
+comp_9:prov_ImageAnalyser_LoadBalancerInterface -> comp_2:req_ImageAnalyser_LoadBalancerInterface
+comp_10:prov_AttachmentsManager_LoadBalancerInterface -> comp_21:req_AttachmentsManager_LoadBalancerInterface
 comp_11:prov_MessageAnalyser_LoadBalancerInterface -> comp_1:req_MessageAnalyser_LoadBalancerInterface
 comp_11:prov_MessageAnalyser_LoadBalancerInterface -> comp_3:req_MessageAnalyser_LoadBalancerInterface
 comp_11:prov_MessageAnalyser_LoadBalancerInterface -> comp_17:req_MessageAnalyser_LoadBalancerInterface
@@ -308,7 +308,7 @@ comp_11:prov_MessageAnalyser_LoadBalancerInterface -> comp_21:req_MessageAnalyse
 comp_11:prov_MessageAnalyser_LoadBalancerInterface -> comp_23:req_MessageAnalyser_LoadBalancerInterface
 comp_12:prov_ImageRecognizer_LoadBalancerInterface -> comp_17:req_ImageRecognizer_LoadBalancerInterface
 comp_13:prov_HeaderAnalyser_LoadBalancerInterface -> comp_3:req_HeaderAnalyser_LoadBalancerInterface
-comp_14:prov_VirusScanner_LoadBalancerInterface -> comp_2:req_VirusScanner_LoadBalancerInterface
+comp_14:prov_VirusScanner_LoadBalancerInterface -> comp_3:req_VirusScanner_LoadBalancerInterface
 comp_15:prov_MessageParser_LoadBalancerInterface -> comp_8:req_MessageParser_LoadBalancerInterface
 comp_16:prov_ImageRecognizerInterface -> comp_12:req_ImageRecognizerInterface
 comp_17:prov_ImageAnalyserInterface -> comp_9:req_ImageAnalyserInterface

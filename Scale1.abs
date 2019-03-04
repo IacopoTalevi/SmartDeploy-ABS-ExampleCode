@@ -33,7 +33,7 @@ interface Scale1{
 	Unit undeploy();
 }
 
-class Scale1(CloudProvider cloudProvider, MessageParser_LoadBalancerInterface messageParser_LoadBalancerObj, HeaderAnalyser_LoadBalancerInterface headerAnalyser_LoadBalancerObj, LinkAnalyser_LoadBalancerInterface linkAnalyser_LoadBalancerObj, TextAnalyser_LoadBalancerInterface textAnalyser_LoadBalancerObj, SentimentAnalyser_LoadBalancerInterface sentimentAnalyser_LoadBalancerObj, AttachmentsManager_LoadBalancerInterface attachmentsManager_LoadBalancerObj, VirusScanner_LoadBalancerInterface virusScanner_LoadBalancerObj, ImageAnalyser_LoadBalancerInterface imageAnalyser_LoadBalancerObj, NSFWDetector_LoadBalancerInterface nsfwDetector_LoadBalancerObj, ImageRecognizer_LoadBalancerInterface imageRecognizer_LoadBalancerObj, MessageAnalyser_LoadBalancerInterface messageAnalyser_LoadBalancerObj, DBInterface dbObj) implements Scale1{
+class Scale1(CloudProvider cloudProvider, MessageParser_LoadBalancerInterface messageParser_LoadBalancerObj, HeaderAnalyser_LoadBalancerInterface headerAnalyser_LoadBalancerObj, LinkAnalyser_LoadBalancerInterface linkAnalyser_LoadBalancerObj, TextAnalyser_LoadBalancerInterface textAnalyser_LoadBalancerObj, SentimentAnalyser_LoadBalancerInterface sentimentAnalyser_LoadBalancerObj, VirusScanner_LoadBalancerInterface virusScanner_LoadBalancerObj, AttachmentsManager_LoadBalancerInterface attachmentsManager_LoadBalancerObj, ImageAnalyser_LoadBalancerInterface imageAnalyser_LoadBalancerObj, NSFWDetector_LoadBalancerInterface nsfwDetector_LoadBalancerObj, ImageRecognizer_LoadBalancerInterface imageRecognizer_LoadBalancerObj, MessageAnalyser_LoadBalancerInterface messageAnalyser_LoadBalancerObj, DBInterface dbObj) implements Scale1{
 
 	List<List<DBInterface>> ls_ls_DBInterface = Nil;
 	List<DBInterface> ls_DBInterface = Nil;
@@ -276,36 +276,36 @@ class Scale1(CloudProvider cloudProvider, MessageParser_LoadBalancerInterface me
 		ls_DeploymentComponent = Cons(c4_2xlarge_8,ls_DeploymentComponent);
 		[DC: c4_2xlarge_7] NSFWDetectorInterface odefault___NSFWDetector_0_c4_2xlarge_7 = new NSFWDetector();
 		ls_NSFWDetectorInterface = Cons(odefault___NSFWDetector_0_c4_2xlarge_7, ls_NSFWDetectorInterface);
+		[DC: c4_2xlarge_2] SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_2 = new SentimentAnalyser();
+		ls_SentimentAnalyserInterface = Cons(odefault___SentimentAnalyser_0_c4_2xlarge_2, ls_SentimentAnalyserInterface);
 		[DC: c4_2xlarge_8] NSFWDetectorInterface odefault___NSFWDetector_0_c4_2xlarge_8 = new NSFWDetector();
 		ls_NSFWDetectorInterface = Cons(odefault___NSFWDetector_0_c4_2xlarge_8, ls_NSFWDetectorInterface);
 		[DC: c4_2xlarge_1] SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_1 = new SentimentAnalyser();
 		ls_SentimentAnalyserInterface = Cons(odefault___SentimentAnalyser_0_c4_2xlarge_1, ls_SentimentAnalyserInterface);
-		[DC: c4_2xlarge_5] ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_5 = new ImageRecognizer();
-		ls_ImageRecognizerInterface = Cons(odefault___ImageRecognizer_0_c4_2xlarge_5, ls_ImageRecognizerInterface);
 		[DC: c4_2xlarge_0] SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_0 = new SentimentAnalyser();
 		ls_SentimentAnalyserInterface = Cons(odefault___SentimentAnalyser_0_c4_2xlarge_0, ls_SentimentAnalyserInterface);
 		[DC: c4_2xlarge_4] ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_4 = new ImageRecognizer();
 		ls_ImageRecognizerInterface = Cons(odefault___ImageRecognizer_0_c4_2xlarge_4, ls_ImageRecognizerInterface);
 		[DC: c4_2xlarge_3] ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_3 = new ImageRecognizer();
 		ls_ImageRecognizerInterface = Cons(odefault___ImageRecognizer_0_c4_2xlarge_3, ls_ImageRecognizerInterface);
+		[DC: c4_2xlarge_5] ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_5 = new ImageRecognizer();
+		ls_ImageRecognizerInterface = Cons(odefault___ImageRecognizer_0_c4_2xlarge_5, ls_ImageRecognizerInterface);
 		[DC: c4_2xlarge_6] NSFWDetectorInterface odefault___NSFWDetector_0_c4_2xlarge_6 = new NSFWDetector();
 		ls_NSFWDetectorInterface = Cons(odefault___NSFWDetector_0_c4_2xlarge_6, ls_NSFWDetectorInterface);
-		[DC: c4_2xlarge_2] SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_2 = new SentimentAnalyser();
-		ls_SentimentAnalyserInterface = Cons(odefault___SentimentAnalyser_0_c4_2xlarge_2, ls_SentimentAnalyserInterface);
 		[DC: c4_2xlarge_0] MessageAnalyserInterface odefault___MessageAnalyser_0_c4_2xlarge_0 = new MessageAnalyser(dbObj);
 		ls_MessageAnalyserInterface = Cons(odefault___MessageAnalyser_0_c4_2xlarge_0, ls_MessageAnalyserInterface);
-		[DC: c4_2xlarge_3] ImageAnalyserInterface odefault___ImageAnalyser_0_c4_2xlarge_3 = new ImageAnalyser(nsfwDetector_LoadBalancerObj, imageRecognizer_LoadBalancerObj, messageAnalyser_LoadBalancerObj);
-		ls_ImageAnalyserInterface = Cons(odefault___ImageAnalyser_0_c4_2xlarge_3, ls_ImageAnalyserInterface);
-		[DC: c4_2xlarge_2] TextAnalyserInterface odefault___TextAnalyser_0_c4_2xlarge_2 = new TextAnalyser(sentimentAnalyser_LoadBalancerObj, messageAnalyser_LoadBalancerObj);
-		ls_TextAnalyserInterface = Cons(odefault___TextAnalyser_0_c4_2xlarge_2, ls_TextAnalyserInterface);
-		[DC: c4_2xlarge_10] VirusScannerInterface odefault___VirusScanner_0_c4_2xlarge_10 = new VirusScanner(imageAnalyser_LoadBalancerObj, messageAnalyser_LoadBalancerObj);
-		ls_VirusScannerInterface = Cons(odefault___VirusScanner_0_c4_2xlarge_10, ls_VirusScannerInterface);
-		[DC: c4_2xlarge_9] VirusScannerInterface odefault___VirusScanner_0_c4_2xlarge_9 = new VirusScanner(imageAnalyser_LoadBalancerObj, messageAnalyser_LoadBalancerObj);
-		ls_VirusScannerInterface = Cons(odefault___VirusScanner_0_c4_2xlarge_9, ls_VirusScannerInterface);
-		[DC: c4_2xlarge_11] VirusScannerInterface odefault___VirusScanner_0_c4_2xlarge_11 = new VirusScanner(imageAnalyser_LoadBalancerObj, messageAnalyser_LoadBalancerObj);
-		ls_VirusScannerInterface = Cons(odefault___VirusScanner_0_c4_2xlarge_11, ls_VirusScannerInterface);
-		[DC: c4_2xlarge_1] AttachmentsManagerInterface odefault___AttachmentsManager_0_c4_2xlarge_1 = new AttachmentsManager(virusScanner_LoadBalancerObj);
+		[DC: c4_2xlarge_2] ImageAnalyserInterface odefault___ImageAnalyser_0_c4_2xlarge_2 = new ImageAnalyser(nsfwDetector_LoadBalancerObj, imageRecognizer_LoadBalancerObj, messageAnalyser_LoadBalancerObj);
+		ls_ImageAnalyserInterface = Cons(odefault___ImageAnalyser_0_c4_2xlarge_2, ls_ImageAnalyserInterface);
+		[DC: c4_2xlarge_3] TextAnalyserInterface odefault___TextAnalyser_0_c4_2xlarge_3 = new TextAnalyser(sentimentAnalyser_LoadBalancerObj, messageAnalyser_LoadBalancerObj);
+		ls_TextAnalyserInterface = Cons(odefault___TextAnalyser_0_c4_2xlarge_3, ls_TextAnalyserInterface);
+		[DC: c4_2xlarge_1] AttachmentsManagerInterface odefault___AttachmentsManager_0_c4_2xlarge_1 = new AttachmentsManager(imageAnalyser_LoadBalancerObj);
 		ls_AttachmentsManagerInterface = Cons(odefault___AttachmentsManager_0_c4_2xlarge_1, ls_AttachmentsManagerInterface);
+		[DC: c4_2xlarge_10] VirusScannerInterface odefault___VirusScanner_0_c4_2xlarge_10 = new VirusScanner(attachmentsManager_LoadBalancerObj, messageAnalyser_LoadBalancerObj);
+		ls_VirusScannerInterface = Cons(odefault___VirusScanner_0_c4_2xlarge_10, ls_VirusScannerInterface);
+		[DC: c4_2xlarge_9] VirusScannerInterface odefault___VirusScanner_0_c4_2xlarge_9 = new VirusScanner(attachmentsManager_LoadBalancerObj, messageAnalyser_LoadBalancerObj);
+		ls_VirusScannerInterface = Cons(odefault___VirusScanner_0_c4_2xlarge_9, ls_VirusScannerInterface);
+		[DC: c4_2xlarge_11] VirusScannerInterface odefault___VirusScanner_0_c4_2xlarge_11 = new VirusScanner(attachmentsManager_LoadBalancerObj, messageAnalyser_LoadBalancerObj);
+		ls_VirusScannerInterface = Cons(odefault___VirusScanner_0_c4_2xlarge_11, ls_VirusScannerInterface);
 		sentimentAnalyser_LoadBalancerObj.connectInstance(odefault___SentimentAnalyser_0_c4_2xlarge_1);
 		sentimentAnalyser_LoadBalancerObj.connectInstance(odefault___SentimentAnalyser_0_c4_2xlarge_0);
 		sentimentAnalyser_LoadBalancerObj.connectInstance(odefault___SentimentAnalyser_0_c4_2xlarge_2);
@@ -316,31 +316,31 @@ class Scale1(CloudProvider cloudProvider, MessageParser_LoadBalancerInterface me
 		imageRecognizer_LoadBalancerObj.connectInstance(odefault___ImageRecognizer_0_c4_2xlarge_5);
 		imageRecognizer_LoadBalancerObj.connectInstance(odefault___ImageRecognizer_0_c4_2xlarge_4);
 		messageAnalyser_LoadBalancerObj.connectInstance(odefault___MessageAnalyser_0_c4_2xlarge_0);
-		imageAnalyser_LoadBalancerObj.connectInstance(odefault___ImageAnalyser_0_c4_2xlarge_3);
-		textAnalyser_LoadBalancerObj.connectInstance(odefault___TextAnalyser_0_c4_2xlarge_2);
+		imageAnalyser_LoadBalancerObj.connectInstance(odefault___ImageAnalyser_0_c4_2xlarge_2);
+		textAnalyser_LoadBalancerObj.connectInstance(odefault___TextAnalyser_0_c4_2xlarge_3);
+		attachmentsManager_LoadBalancerObj.connectInstance(odefault___AttachmentsManager_0_c4_2xlarge_1);
 		virusScanner_LoadBalancerObj.connectInstance(odefault___VirusScanner_0_c4_2xlarge_11);
 		virusScanner_LoadBalancerObj.connectInstance(odefault___VirusScanner_0_c4_2xlarge_10);
 		virusScanner_LoadBalancerObj.connectInstance(odefault___VirusScanner_0_c4_2xlarge_9);
-		attachmentsManager_LoadBalancerObj.connectInstance(odefault___AttachmentsManager_0_c4_2xlarge_1);
 	}
 
 	Unit undeploy_aux() {
 		NSFWDetectorInterface odefault___NSFWDetector_0_c4_2xlarge_7 = nth(ls_NSFWDetectorInterface,0);
+		SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_2 = nth(ls_SentimentAnalyserInterface,0);
 		NSFWDetectorInterface odefault___NSFWDetector_0_c4_2xlarge_8 = nth(ls_NSFWDetectorInterface,1);
-		SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_1 = nth(ls_SentimentAnalyserInterface,0);
-		ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_5 = nth(ls_ImageRecognizerInterface,0);
-		SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_0 = nth(ls_SentimentAnalyserInterface,1);
-		ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_4 = nth(ls_ImageRecognizerInterface,1);
-		ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_3 = nth(ls_ImageRecognizerInterface,2);
+		SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_1 = nth(ls_SentimentAnalyserInterface,1);
+		SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_0 = nth(ls_SentimentAnalyserInterface,2);
+		ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_4 = nth(ls_ImageRecognizerInterface,0);
+		ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_3 = nth(ls_ImageRecognizerInterface,1);
+		ImageRecognizerInterface odefault___ImageRecognizer_0_c4_2xlarge_5 = nth(ls_ImageRecognizerInterface,2);
 		NSFWDetectorInterface odefault___NSFWDetector_0_c4_2xlarge_6 = nth(ls_NSFWDetectorInterface,2);
-		SentimentAnalyserInterface odefault___SentimentAnalyser_0_c4_2xlarge_2 = nth(ls_SentimentAnalyserInterface,2);
 		MessageAnalyserInterface odefault___MessageAnalyser_0_c4_2xlarge_0 = nth(ls_MessageAnalyserInterface,0);
-		ImageAnalyserInterface odefault___ImageAnalyser_0_c4_2xlarge_3 = nth(ls_ImageAnalyserInterface,0);
-		TextAnalyserInterface odefault___TextAnalyser_0_c4_2xlarge_2 = nth(ls_TextAnalyserInterface,0);
+		ImageAnalyserInterface odefault___ImageAnalyser_0_c4_2xlarge_2 = nth(ls_ImageAnalyserInterface,0);
+		TextAnalyserInterface odefault___TextAnalyser_0_c4_2xlarge_3 = nth(ls_TextAnalyserInterface,0);
+		AttachmentsManagerInterface odefault___AttachmentsManager_0_c4_2xlarge_1 = nth(ls_AttachmentsManagerInterface,0);
 		VirusScannerInterface odefault___VirusScanner_0_c4_2xlarge_10 = nth(ls_VirusScannerInterface,0);
 		VirusScannerInterface odefault___VirusScanner_0_c4_2xlarge_9 = nth(ls_VirusScannerInterface,1);
 		VirusScannerInterface odefault___VirusScanner_0_c4_2xlarge_11 = nth(ls_VirusScannerInterface,2);
-		AttachmentsManagerInterface odefault___AttachmentsManager_0_c4_2xlarge_1 = nth(ls_AttachmentsManagerInterface,0);
 		sentimentAnalyser_LoadBalancerObj.disconnectInstance();
 		sentimentAnalyser_LoadBalancerObj.disconnectInstance();
 		sentimentAnalyser_LoadBalancerObj.disconnectInstance();
@@ -353,10 +353,10 @@ class Scale1(CloudProvider cloudProvider, MessageParser_LoadBalancerInterface me
 		messageAnalyser_LoadBalancerObj.disconnectInstance();
 		imageAnalyser_LoadBalancerObj.disconnectInstance();
 		textAnalyser_LoadBalancerObj.disconnectInstance();
-		virusScanner_LoadBalancerObj.disconnectInstance();
-		virusScanner_LoadBalancerObj.disconnectInstance();
-		virusScanner_LoadBalancerObj.disconnectInstance();
 		attachmentsManager_LoadBalancerObj.disconnectInstance();
+		virusScanner_LoadBalancerObj.disconnectInstance();
+		virusScanner_LoadBalancerObj.disconnectInstance();
+		virusScanner_LoadBalancerObj.disconnectInstance();
 		while ( !isEmpty(ls_DeploymentComponent) ) {
 			cloudProvider.shutdownInstance(head(ls_DeploymentComponent));
 			ls_DeploymentComponent = tail(ls_DeploymentComponent);
